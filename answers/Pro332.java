@@ -26,6 +26,7 @@ public class Solution {
             return true;
         }
         if (map.get(curPort) != null){
+            // Note: you can remove elements when iterating using index
             for (int idx = 0 ; idx < map.get(curPort).size() ; idx ++) {
                 String to = map.get(curPort).get(idx);
                 map.get(curPort).remove(idx);
