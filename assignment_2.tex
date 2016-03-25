@@ -10489,7 +10489,11 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
 
 \textbf{Solution - BIT}
 
-~~!!!!!!!!!!!!!!!!! NOT FINISHED
+~~ For BIT, we firstly sort and discrete the original array to make array in BIT much shorter. Then we assign each element a index according to its position after sorted, eg: for [5,2,6,1], there will be $1->1, 2->2, 3->5, 4->6$.
+
+~~ Then it's time for BIT to take effect. We iterate from tail of original array, now sum of discrete[nums[i]] is count of its smaller elements, and we may then update the BIT since we have a new element counting from right.
+
+~~ Since we are counting `smaller' rather than `not bigger', we have to minus 1 to discrete[num[i]] when doing the sum operation, which is a bit forgettable.
 
 \javacode{Pro315_2}{Solution 2}
 
