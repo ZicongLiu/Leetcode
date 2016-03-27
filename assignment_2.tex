@@ -10607,7 +10607,7 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
 
 \textbf{Solution - BST}
 
-~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NOT FINISHED
+~~I didn't understand the solution at first sight, but honestly this is more intuitive. We are looking for a range sum from `lower' to `upper', so when we consider the `sums' array in previous solution, we are looking for a $lower <= sums[j] - sums[i-1] <= upper$. So we build a BST to store each sums, before inserting a new sums[i], we check in the tree that is there any previous sums X which satisfy $X >= sums[j] - upper$ and $X <= sums[j] - lower$. We used an exclusive method to get final result.
 
 \javacode{Pro214_2}{Solution 2}
 
