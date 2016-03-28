@@ -3342,7 +3342,8 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
     You must not modify the array (assume the array is read only).
     You must use only constant, $O(1)$ extra space.
     Your runtime complexity should be less than $O(n^2)$.
-    There is only one duplicate number in the array, but it could be repeated more than once.
+    There is only one duplicate number in the array,
+     but it could be repeated more than once.
 
     https://leetcode.com/problems/find-the-duplicate-number/
 
@@ -3378,44 +3379,6 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \begin{homeworkProblem}
 \title{\textbf{\large 268 Missing Number}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Given an array containing n distinct numbers taken from
-     0, 1, 2, ..., n, find the one that is missing from the array.
-
-    For example,
-    Given nums = [0, 1, 3] return 2.
-
-    Note:
-    Your algorithm should run in linear runtime complexity.
-     Could you implement it using only constant extra space complexity?
-
-    https://leetcode.com/problems/missing-number/
-
-\end{lstlisting}
-
-
-\textbf{Solution}
-
-~~ Since there is only one missing element, the different between sum of the array and 0 to n is exactly what is missing.
-
-~~ Binary search similar to Problem ``Find the Duplicate Number'' is also proper for this problem.(Remember to sort the array first if we don't want to calculate the count.)
-
-\javacode{Pro268}{Solution}
-
-
-\end{homeworkProblem}
-\newpage
-
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 268 Missing Number
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 268 Missing Number????????????????????????}}
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
@@ -3498,9 +3461,12 @@ Below is a solution without reducing 1 to all elements.
 
     Assume a BST is defined as follows:
 
-        The left subtree of a node contains only nodes with keys less than the node's key.
-        The right subtree of a node contains only nodes with keys greater than the node's key.
-        Both the left and right subtrees must also be binary search trees.
+        The left subtree of a node contains
+         only nodes with keys less than the node's key.
+        The right subtree of a node contains
+         only nodes with keys greater than the node's key.
+        Both the left and right subtrees must
+         also be binary search trees.
 
     https://leetcode.com/problems/validate-binary-search-tree/
 
@@ -3538,11 +3504,12 @@ Below is a solution without reducing 1 to all elements.
 
     Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
-    Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+    Valid operators are +, -, *, /.
+     Each operand may be an integer or another expression.
 
     Some examples:
-      ["2", "1", "+", "3", "*"] -$>$ ((2 + 1) * 3) -> 9
-      ["4", "13", "5", "/", "+"] -$>$ (4 + (13 / 5)) -> 6
+      ["2", "1", "+", "3", "*"] -$>$ ((2 + 1) * 3) $->$ 9
+      ["4", "13", "5", "/", "+"] -$>$ (4 + (13 / 5)) $->$ 6
 
     https://leetcode.com/problems/evaluate-reverse-polish-notation/
 
@@ -3677,8 +3644,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ Reference: how to get Reverse Polish Expression :
 
-http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
-58foX6EZ9YZRSK8wvS4xhIxgOHHjU43jIqxqjKMVb9MHqZsyx1LxtjqvknS2QLHj0nLJowkiucRt3LFK
+\url{http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe58foX6EZ9YZRSK8wvS4xhIxgOHHjU43jIqxqjKMVb9MHqZsyx1LxtjqvknS2QLHj0nLJowkiucRt3LFK}
 
 
 \javacode{Pro224}{Solution}
@@ -4033,7 +3999,7 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
 
 \textbf{Solution}
 
-~~The train of thought is similar to Problem ``Unique Binary Search Tree II'', get all possibilities, and combine them all.
+~~BST is really a tactical data structure. Iterator asks us to return the next smallest element, namely return a ascending list if we call the next() function several times. Recall something? The inorder traversal of BST! Then what we only need to do is to repeat what we have done in process of inorder traversal.
 
 \javacode{Pro173}{Solution}
 
@@ -4102,7 +4068,8 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
 
     Given an Iterator class interface with methods: next() and hasNext(),
      design and implement a PeekingIterator that support the peek() operation
-      -- it essentially peek() at the element that will be returned by the next call to next().
+      -- it essentially peek() at the element
+       that will be returned by the next call to next().
 
     Here is an example. Assume that the iterator is initialized
      to the beginning of the list: [1, 2, 3].
@@ -4509,7 +4476,8 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
 
     Given preorder and inorder traversal of a tree, construct the binary tree.
 
-    https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+    https://leetcode.com/problems/-
+            construct-binary-tree-from-preorder-and-inorder-traversal/
 
 \end{lstlisting}
 
@@ -4538,7 +4506,8 @@ http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe
     Note:
     You may assume that duplicates do not exist in the tree.
 
-    https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+    https://leetcode.com/problems/-
+            construct-binary-tree-from-inorder-and-postorder-traversal/
 
 \end{lstlisting}
 

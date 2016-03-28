@@ -58,7 +58,8 @@ public class Codec {
         if (valueList.get(valueList.size() - 1) == null){
             resultBuilder.append("#");
         }else{
-            resultBuilder.append(String.valueOf(valueList.get(valueList.size() - 1)));
+            resultBuilder.append(
+                String.valueOf(valueList.get(valueList.size() - 1)));
         }
         resultBuilder.append("]");
         
@@ -81,7 +82,8 @@ public class Codec {
             if (values[idxValue].equals("#")){
                 waitingQueue.offer(null);
             }else{
-                waitingQueue.offer(new TreeNode(Integer.parseInt(values[idxValue])));
+                waitingQueue.offer(
+                    new TreeNode(Integer.parseInt(values[idxValue])));
             }
         }
         TreeNode rootNode = waitingQueue.poll();

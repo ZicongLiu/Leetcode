@@ -8,7 +8,6 @@
  * }
  */
 public class Solution {
-
     public List<Integer> postorderTraversal(TreeNode root) {
         if (root == null){
             return new ArrayList<Integer>();
@@ -16,7 +15,6 @@ public class Solution {
         List<Integer> result = new ArrayList<Integer>();
         Stack<TreeNode> traversalStack = new Stack<TreeNode>();
         traversalStack.push(root);
-        
         while (!traversalStack.isEmpty()){
             TreeNode curNode = traversalStack.pop();
             result.add(curNode.val);
@@ -29,10 +27,8 @@ public class Solution {
         }
         return reverseList(result);
     }
-    
     private List<Integer> reverseList(List<Integer> list){
         int idxStart = 0 , idxEnd = list.size() - 1;
-        
         while (idxStart < idxEnd){
             Integer swapInt = list.get(idxStart);
             list.set(idxStart, list.get(idxEnd));
@@ -40,7 +36,6 @@ public class Solution {
             idxStart ++;
             idxEnd --;
         }
-        
         return list;
     }
 }

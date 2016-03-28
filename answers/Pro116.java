@@ -20,7 +20,8 @@ public class Solution {
             }
             for (int nodeIdx = 0 ; nodeIdx < nodesCurLevel.size() ; nodeIdx ++){
                 if (nodeIdx != nodesCurLevel.size() - 1){
-                    nodesCurLevel.get(nodeIdx).next = nodesCurLevel.get(nodeIdx + 1);
+                    nodesCurLevel.get(nodeIdx).next =
+                     nodesCurLevel.get(nodeIdx + 1);
                 }
                 else{
                     nodesCurLevel.get(nodeIdx).next = null;

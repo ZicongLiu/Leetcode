@@ -20,7 +20,8 @@ public class Solution {
             while(!resolvingNodes.isEmpty()){
                 nodeListInCurLevel.add(resolvingNodes.poll());
             }
-            rightMostNodes.add(nodeListInCurLevel.get(nodeListInCurLevel.size() - 1).val);
+            rightMostNodes.add(
+                nodeListInCurLevel.get(nodeListInCurLevel.size() - 1).val);
             for (TreeNode curNode : nodeListInCurLevel){
                 if (curNode.left != null){
                     resolvingNodes.offer(curNode.left);

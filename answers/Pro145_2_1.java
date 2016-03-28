@@ -16,8 +16,6 @@
      }
  }
 public class Solution {
-    
-
     public List<Integer> postorderTraversal(TreeNode root) {
         if (root == null){
             return new ArrayList<Integer>();
@@ -25,7 +23,6 @@ public class Solution {
         List<Integer> result = new ArrayList<Integer>();
         Stack<TagTreeNode> traversalStack = new Stack<TagTreeNode>();
         traversalStack.push(new TagTreeNode(root, false));
-        
         while (!traversalStack.isEmpty()){
             TagTreeNode curNode = traversalStack.pop();
             if(curNode.visited){
@@ -35,18 +32,15 @@ public class Solution {
                 curNode.visited = true;
                 traversalStack.push(curNode);
                 if (curNode.node.right != null){
-                    traversalStack.push(new TagTreeNode(curNode.node.right, false));
+                    traversalStack.push(
+                        new TagTreeNode(curNode.node.right,false));
                 }    
                 if (curNode.node.left != null){
-                    traversalStack.push(new TagTreeNode(curNode.node.left, false));
+                    traversalStack.push(
+                        new TagTreeNode(curNode.node.left,false));
                 }
             }
-            
         }
-        
-        
         return result;
     }
-    
-
 }

@@ -15,13 +15,11 @@ public class Solution {
         Stack<Integer> operands = new Stack<Integer>();
         Stack<Character> operators = new Stack<Character>();
         int idx = 0;
-        
         while (idx < s.length()){
             char curChar = s.charAt(idx);
             while (curChar == ' ' && ++idx < s.length()){
                 curChar = s.charAt(idx);
             }
-            
             String numberStr = "";
             while (idx < s.length() && curChar >= '0' && curChar <= '9'){
                 numberStr  += curChar;
@@ -35,12 +33,10 @@ public class Solution {
                 int number = Integer.parseInt(numberStr);
                 operands.push(number);
             }
-            
-            if (curChar == ' '){
+            if (curChar == ' ')
                 continue;
-            }
-            
-            if (curChar == '+' || curChar == '-' || curChar == '*' || curChar == '/'){
+            if (curChar == '+' || curChar == '-'
+                 || curChar == '*' || curChar == '/'){
                 if (operators.isEmpty()){
                     operators.push(curChar);
                 } else {
@@ -55,37 +51,32 @@ public class Solution {
                             int result = getResult(num1, num2, op);
                             operands.push(result);
                         }
-                        
                         operators.push(curChar);
                     }
                     else if ((curChar == '*' || curChar == '/')){
-                        while (!operators.isEmpty() && operators.peek() != '+' && operators.peek() != '-'){
+                        while (!operators.isEmpty()
+                         && operators.peek() != '+'
+                          && operators.peek() != '-'){
                              // calculate numbers in stack first
                             int num2 = operands.pop();
                             int num1 = operands.pop();
                             char op = operators.pop();
-                           
                             int result = getResult(num1, num2, op);
                             operands.push(result);
                         }
-                        
                         operators.push(curChar);
                     }
-                    
                 }
                 idx ++;
             }
         }
-        
         while (!operators.isEmpty()){
             int num2 = operands.pop();
             int num1 = operands.pop();
             char op = operators.pop();
-            
             int result = getResult(num1, num2, op);
             operands.push(result);
         }
-        
         return operands.pop();
     }
 }

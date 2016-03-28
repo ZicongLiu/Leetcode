@@ -1,12 +1,10 @@
 public class Solution {
-    
-        Stack<String> operators = new Stack<String>();
-        Stack<Integer> operands = new Stack<Integer>();
-        
+    Stack<String> operators = new Stack<String>();
+    Stack<Integer> operands = new Stack<Integer>();
     public boolean isOperator(String op){
-        return (op.equals("+") || op.equals("-") || op.equals("(") || op.equals(")"));
+        return (op.equals("+") || op.equals("-")
+         || op.equals("(") || op.equals(")"));
     }
-    
     public int basicCal(String operator){
         int num2 = operands.pop();
         int num1 = operands.pop();
@@ -19,7 +17,6 @@ public class Solution {
         return -1;
     }
     public int calculate(String s) {
-        
         int idx = 0 ; 
         String entity = "";
         while (idx < s.length()){
@@ -40,28 +37,26 @@ public class Solution {
             if (numStr.length() > 0){
                 operands.push(Integer.parseInt(numStr));
             }
-            
             if (isOperator(String.valueOf(ch))){
                 if (ch == '('){
                     operators.push(String.valueOf(ch));
                 }else if (ch  == ')'){
-                    while (!operators.isEmpty() && !operators.peek().equals("(")){
+                    while (!operators.isEmpty()
+                     && !operators.peek().equals("(")){
                         String operator = operators.pop();
-                        
                         int result = basicCal(operator);
                         operands.push(result);
                     }
                     operators.pop();
                 }else{
                     // + or -
-                    while (!operators.isEmpty() && (operators.peek().equals("+")
+                    while (!operators.isEmpty()
+                     && (operators.peek().equals("+")
                      || operators.peek().equals("-"))){
                         String operator = operators.pop();
-                        
                         int result = basicCal(operator);
                         operands.push(result);
                     }
-                    
                     operators.push(String.valueOf(ch));
                 }
                     
@@ -69,13 +64,10 @@ public class Solution {
             
             idx ++;
         }
-        
         while (!operators.isEmpty()){
             String operator = operators.pop();
-            
             int result = basicCal(operator);
             operands.push(result);
-            
         }
         return operands.pop();
     }
