@@ -2,7 +2,8 @@ public class Solution {
 public int ladderLength(String start, String end, Set<String> dict) {  
       
         //create graph  
-       HashMap<String, ArrayList<String>> graph = new HashMap<String, ArrayList<String>>();  
+       HashMap<String, ArrayList<String>> graph =
+           new HashMap<String, ArrayList<String>>();  
          
        graph.put(start, new ArrayList<String>());  
        graph.put(end, new ArrayList<String>());  

@@ -8602,7 +8602,7 @@ Below is a solution without reducing 1 to all elements.
 
 \end{lstlisting}
 
-\textbf{Solution 1}
+\textbf{Solution - DP}
 
 ~~First solution is DP solution with $O(n^2)$, it can output a result through `Run'(within an acceptable time limit, I guess), but will get TLE when submit.
 
@@ -8610,11 +8610,24 @@ Below is a solution without reducing 1 to all elements.
 
 \javacode{Pro5_1}{Solution 1}
 
-\textbf{Solution 2}
+\textbf{Solution - Expanding}
 
-~~Solution is an $O(n) runtime$ solution. The train of thought is interesting and reversing. Instead of finding the longest, the solution start from the middle of palindrome and form a palindrome from the middle. Note that there are two ways of expanding the middle element(s), one from single element, while another from two adjacent elements.
+~~Solution is an $O(n^2) runtime$ solution. The train of thought is interesting and reversing. Instead of finding the longest, the solution start from the middle of palindrome and form a palindrome from the middle. Note that there are two ways of expanding the middle element(s), one from single element, while another from two adjacent elements.
 
 \javacode{Pro5_2}{Solution 2}
+
+\textbf{Solution - Manacher}
+
+~~Such a neat, elegant, excellent algorithm that I still cannot totally understand it...
+
+~~ Though there is a blog for Manacher in Chinese, I think the English version in Leetcode articles is much better.(Maybe with the example?) I'll post the screenshots and code here for future use.
+
+\includegraphics[width=0.72\columnwidth]{figures/5_longest_palindromic_substring_1}\\
+\includegraphics[width=0.72\columnwidth]{figures/5_longest_palindromic_substring_2}\\
+\includegraphics[width=0.72\columnwidth]{figures/5_longest_palindromic_substring_3}\\
+\includegraphics[width=0.72\columnwidth]{figures/5_longest_palindromic_substring_4}\\
+
+\javacode{Pro5_3}{Solution 3}
 
 \end{homeworkProblem}
 \newpage

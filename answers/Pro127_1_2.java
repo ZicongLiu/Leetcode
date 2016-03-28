@@ -7,7 +7,8 @@ public class Solution {
         return findLadder(sourceSet, targetSet, dict, 1);
     }
     
-    private int findLadder(Set<String> sourceSet, Set<String> targetSet, Set<String> dict, int depth){
+    private int findLadder(Set<String> sourceSet,
+             Set<String> targetSet, Set<String> dict, int depth){
         if (sourceSet.size() == 0){
             return 0;
         }

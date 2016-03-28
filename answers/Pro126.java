@@ -1,6 +1,7 @@
 public class Solution {
     List<List<String>> result = new ArrayList<List<String>>();
-    public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {  
+    public List<List<String>> findLadders(String beginWord, String endWord,
+                                         Set<String> wordList) {  
         Map<String, List<String>> succs = new HashMap<String, List<String>>();
         Set<String> beginWords = new HashSet<String>();
         Set<String> endWords = new HashSet<String>();
@@ -13,7 +14,8 @@ public class Solution {
         buildPath(beginWord, endWord, succs, new ArrayList(pathStarts));
         return result;
     }  
-    private void bfsLadders(Set<String> beginWords, Set<String> endWords, Set<String> dict, Map<String, List<String>> succs, boolean reversed){
+    private void bfsLadders(Set<String> beginWords, Set<String> endWords,
+         Set<String> dict, Map<String, List<String>> succs, boolean reversed){
         
         if (beginWords.isEmpty()){
         	return;
@@ -42,7 +44,8 @@ public class Solution {
                     String newStr = new String(wordCharArr);
                     String key = reversed ? newStr : beginWord;
                     String value = reversed ? beginWord : newStr;
-                    List<String> list = succs.containsKey(key) ? succs.get(key) : new ArrayList<String>();
+                    List<String> list = succs.containsKey(key) ?
+                             succs.get(key) : new ArrayList<String>();
                     
                     if (endWords.contains(newStr)){
                             found = true;
@@ -73,7 +76,8 @@ public class Solution {
         bfsLadders(generated, endWords, dict, succs, reversed);
     }
     
-    private void buildPath(String beginWord, String endWord, Map<String, List<String>> succs, List<String> curList){
+    private void buildPath(String beginWord, String endWord,
+             Map<String, List<String>> succs, List<String> curList){
         if (beginWord.equals(endWord)){
             result.add(new ArrayList(curList));
             return;
