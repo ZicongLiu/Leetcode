@@ -1,5 +1,5 @@
 int findlength(string s) {  
-    int paired = 0;;  
+    int paired = 0;
     int len = 0;  
     stack<char> stk;  
     for(int i=0; i< s.length(); ++i)  

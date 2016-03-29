@@ -424,7 +424,7 @@ Basic Binary Search algorithm
 
 \textbf{Solution}
 
-~~It's not a conventional way of using DP. Detailed Description can be seen below, REVIEW ``Best Time to Buy and Sell Stock'' series.
+~~It's not a conventional way of using DP. Detailed Description can be seen below.
 
 \includegraphics[width=1\columnwidth]{figures/188_best_time_to_buy_and_sell_stock_iv}
 
@@ -546,7 +546,7 @@ Non-recursive solution, basically maintains 3 pointers, `cur', `next', next node
 
 \textbf{Solution 2}
 
-Recursive solution, needs to be \textbf{REVIEWED SEVERAL TIMES!} I still cannot get the point for recursion...
+Recursive solution.
 
 \javacode{Pro206_2}{Solution 2}
 
@@ -1025,7 +1025,7 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \javacode{Pro191_2}{Solution 2}
 
-~~What's more, using n & (n-1) also does excellent work. Mind those boundaries.
+~~What's more, using n \& (n-1) also does excellent work. Mind those boundaries.
 
 \end{homeworkProblem}
 \newpage
@@ -1602,10 +1602,10 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 \textbf{Solution}
 
-~~ It is a representative problem of backtracking or recursion, I need to REVIEW it for several times!
+~~ It is a representative problem of backtracking or recursion.
 
 ~~ In fact, there are all kinds of algorithms to generate all-permutations.
- 
+
  ~~See \url{http://blog.csdn.net/ljiabin/article/details/40151393}
 
 \javacode{Pro46}{Solution}
@@ -1777,7 +1777,7 @@ There is a more interesting solution, given the fact that the numbers only conta
     Notes: It is intended for this problem to be specified vaguely
      (ie, no given input specs).
      You are responsible to gather all the input requirements up front.
-     
+
 
     Requirements for atoi:
     The function first discards as many whitespace characters as necessary
@@ -1920,7 +1920,13 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 ~~Also, use Moore's Voting Algorithm, this time we have 2 candidates comparing to other nodes. Remember to check finally whether the two candidates are all majority elements we want since there may be only one majority element.
 
-\javacode{Pro229}{Solution}
+\javacode{Pro229_1}{Solution 1}
+
+\textbf{Another interesting solution}
+
+~~From `Clean Code Handbook`, with comments served as description.
+
+\ccode{Pro229_2}{Solution 2}
 
 \end{homeworkProblem}
 \newpage
@@ -1987,7 +1993,7 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 \textbf{Solution 1}
 
-~~ An easy problem just like ``Add Two Number'', easier.
+~~ First come up with the ``naive'' solution.
 
 \javacode{Pro258_1}{Solution 1}
 
@@ -2033,8 +2039,6 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 \includegraphics[width=1\columnwidth]{figures/233_number_of_digit_one}
 
-~~(Also mark that this is the first problem I solve only in web page. Needs to be REVIEWed.)
-
 
 \javacode{Pro233}{Solution}
 
@@ -2059,11 +2063,7 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 \textbf{Solution 1}
 
-~~ Honestly, I don't think I totally understand the solution, so that I'll list my current train of thought in case of forgetting.
-
-\includegraphics[width=1\columnwidth]{figures/233_number_of_digit_one}
-
-~~(Also mark that this is the first problem I solve only in web page. Needs to be REVIEWed.)
+~~First solution is straightforward but a bit inefficient.
 
 \javacode{Pro204_1}{Solution 1}
 
@@ -2098,7 +2098,7 @@ There is a more interesting solution, given the fact that the numbers only conta
 
     For figure of the algorithm,
 
-     see $https://leetcode.com/static/images/solutions/Sieve\_of\_Eratosthenes\_animation.gif$.
+     see \url{https://leetcode.com/static/images/solutions/Sieve\_of\_Eratosthenes\_animation.gif}.
 
     We start off with a table of n numbers. Let's look at the first number, 2. We know all multiples of 2 must not be primes, so we mark them off as non-primes. Then we look at the next number, 3. Similarly, all multiples of 3 such as 3 * 2 = 6, 3 * 3 = 9, ... must not be primes, so we mark them off as well. Now we look at the next number, 4, which was already marked off. What does this tell you? Should you mark off all multiples of 4 as well?}
 
@@ -2182,7 +2182,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 ~~This is not over, since dp[i+dp[i+1]+2] may not be 0, which we also need to take into addition.(We don't need to finish such process recursively since the process is done when we were calculating dp[i+dp[i+1]+2]).
 
-~~ Be sure to check every boundaries conditions!!! Need to be REVIEWed!!
+~~ Be sure to check every boundaries conditions!!! 
 
 \ccode{Pro32_1}{Solution Brute force}
 
@@ -2252,7 +2252,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
     Note:
     You may assume k is always valid,
-     ie: 1 $<=$ k $<=$ input array's size for non-empty array.
+     ie: 1 <= k <= input array's size for non-empty array.
 
     Follow up:
     Could you solve it in linear time?
@@ -2279,8 +2279,6 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 ~~ Let's see an example.
 
 \includegraphics[width=1\columnwidth]{figures/239_sliding_window_maximum_2}
-
-~~ Need to be REVIEWed!!
 
 ~~LinkedList in Java has similar interface as deque in C++.
 
@@ -2413,7 +2411,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~ Solution is as Hint said. REVIEW!
+~~ Solution is as Hint said. 
 
 \javacode{Pro264}{Solution}
 
@@ -2443,7 +2441,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
     Note:
     (1) 1 is a super ugly number for any given primes.
     (2) The given numbers in primes are in ascending order.
-    (3) 0 < k ¡Ü 100, 0 < n ¡Ü 106, 0 < primes[i] < 1000.
+    (3) 0 < k <= 100, 0 < n <= 106, 0 < primes[i] < 1000.
 
     https://leetcode.com/problems/ugly-number-ii/
 
@@ -2451,7 +2449,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~ This is just a general circumstance of Problem 264 ``Ugly Number II'', so just utilize the same algorithm is fine. REVIEW!
+~~ This is just a general circumstance of Problem 264 ``Ugly Number II'', so just utilize the same algorithm is fine.
 
 \javacode{Pro313}{Solution}
 
@@ -2626,7 +2624,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution 2}
 
-~~ BFS is simpler, faster and more natural. We stop when all levels are traversed, namely when queue is empty. Edge case is root == null. Don't forget to check if input parameter is null (when using BFS)!
+~~ When using BFS, se stop when all levels are traversed, namely when queue is empty. Edge case is root == null. Don't forget to check if input parameter is null (when using BFS)!
 
 \javacode{Pro104_2}{Solution 2}
 
@@ -2645,7 +2643,8 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
     Find the kth largest element in an unsorted array.
-     Note that it is the kth largest element in the sorted order, not the kth distinct element.
+     Note that it is the kth largest element in the sorted order,
+      not the kth distinct element.
 
     For example,
     Given [3,2,1,5,6,4] and k = 2, return 5.
@@ -2659,7 +2658,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution 1}
 
-~~ This is a good problem! REVIEW for Quick Sort \& Heap Sort! Solution 1 is great, it utilize half of QuickSort -- the partition part. During quicksort, when we decide to put a pivot, the pivot is at exactly where it should be in a sorted array(then numbers on both sides are sorted respectively.). So we can check if the index of pivot is what we want - k, or more accurate, nums.length - k, if so, the question is answered.
+~~ This is a good problem! Solution 1 is great, it utilize half of QuickSort -- the partition part. During quicksort, when we decide to put a pivot, the pivot is at exactly where it should be in a sorted array(then numbers on both sides are sorted respectively.). So we can check if the index of pivot is what we want - k, or more accurate, nums.length - k, if so, the question is answered.
 
 \javacode{Pro215_1_1}{Solution 1.1}
 
@@ -2848,6 +2847,36 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \end{homeworkProblem}
 \newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 100 Same Tree
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 100 Same Tree}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given two binary trees, write a function to check if they are equal or not.
+
+    Two binary trees are considered equal if they are structurally identical
+     and the nodes have the same value.
+
+    https://leetcode.com/problems/same-tree/
+
+\end{lstlisting}
+
+
+\textbf{Solution}
+
+~~Similar to Problem 101 ``Symmetric Tree'', except for the nodes for comparison.
+
+\javacode{Pro100}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
 %----------------------------------------------------------------------------------------
 %	PROBLEM 101 Symmetric Tree
 %----------------------------------------------------------------------------------------
@@ -2883,7 +2912,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution 1}
 
-~~ Recursion solution is kind of simple(but I still can't figure it out at first sight..., REVIEW).
+~~ Recursion solution is kind of simple(but I still can't figure it out at first sight...).
 
 \javacode{Pro101_1}{Solution 1}
 
@@ -2979,7 +3008,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~ Just add checking process to see if there are obstacles, if so, dp[i][j] = 0; Mention that in initialization phase(to initialize 1st row and 1st column), when we first met obstacle, the latter grids are all impassable, there dp value should be 0 too.
+~~ Just add checking process to see if there are obstacles, if so, dp[i][j] = 0; Mention that in initialization phase(to initialize 1st row and 1st column), when we first met obstacle, the latter grids are all impassable, then dp value should be 0 too.
 
 \javacode{Pro63}{Solution}
 
@@ -3009,7 +3038,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~A bit complicated than Problem 62 ``Unique Paths'', see code in listing \ref{Pro64}
+~~A bit more complicated than Problem 62 ``Unique Paths'', see code in listing \ref{Pro64}
 
 \javacode{Pro64}{Solution}
 
@@ -3188,42 +3217,13 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~ First, REVIEW all kinds of sorting methods!
+~~ First, review all kinds of sorting methods!
 
 \includegraphics[width=0.8\columnwidth]{figures/148_sort_list}
 
 ~~We can see that Heap sort, Quick sort and Merge sort satisfy the requirements of problem. They all need extra space at first sight, which may not meet the space requirement. However, when we look at the attribute of LinkedList, we can find out that we do not need to allocate extra space to store the sorted list after merging, what we need to do is just to reconnect the nodes.
 
 \javacode{Pro148}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 100 Same Tree
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 100 Same Tree}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Given two binary trees, write a function to check if they are equal or not.
-
-    Two binary trees are considered equal if they are structurally identical
-     and the nodes have the same value.
-
-    https://leetcode.com/problems/same-tree/
-
-\end{lstlisting}
-
-
-\textbf{Solution}
-
-~~Similar to Problem 101 ``Symmetric Tree'', except for the nodes for comparison.
-
-\javacode{Pro100}{Solution}
 
 \end{homeworkProblem}
 \newpage
@@ -3257,6 +3257,8 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 \textbf{Solution 2}
 
 ~~Bit manipulation is more proper to this SET of problems. Xor is the key to this problem. Apply xor to 2 same numbers will get the result 0, and since xor is commutative(a xor b = b xor a) and associative(a xor b xor c = a xor (b xor c)), xor all numbers will get the single number!
+
+~~In fact, solution in next Problem ``Single Number II'' is more proper for this SET of problems.
 
 \javacode{Pro136_2}{Solution 2}
 
@@ -3364,7 +3366,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~A good DFS problem, REVIEW it!
+~~A good DFS problem.
 
 ~~ The difficulties focus on those edge cases(String startsWith 0 - 01 is illegal; length of remaining string) and how to deal with multiply operation. In this solution uses a `diff' to save previous result, for example, 1 - 2 * 3, previous result should be -1(1 - 2), but 1-2*3=-5, which means we should apply -1 - (-2) + (-2 *3), here diff = -2, namely previous number.
 
@@ -3414,7 +3416,7 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution}
 
-~~It's just a simple DFS problem... How poor am I...
+~~It's just a simple DFS problem... 
 
 \javacode{Pro200}{Solution}
 
@@ -3450,9 +3452,11 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
 \textbf{Solution 1}
 
-~~ A pretty interesting problem, REVIEW it.
+~~ A pretty interesting problem.
 
-~~ There is a good blog which shows all kinds of solutions for this problem, see https://segmentfault.com/a/1190000003817671.
+~~ There is a good blog which shows all kinds of solutions for this problem,
+
+~~ see \url{https://segmentfault.com/a/1190000003817671}.
 
 ~~Binary Search is available with its $O(n logn) runtime and O(1) space$, with the idea to binary search for the value from 1 to n to match numbers in array, instead of searching in the array itself.
 

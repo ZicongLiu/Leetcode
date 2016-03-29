@@ -1,6 +1,7 @@
 public class Solution {
     public boolean isValid(String s) {
-        HashMap<Character, Character> pairs = new HashMap<Character, Character>(){
+        HashMap<Character, Character> pairs
+         = new HashMap<Character, Character>(){
             {
                 put('(',')');
                 put('[',']');
