@@ -19,7 +19,8 @@ public class Solution {
             for (int i = 1 ; i < prices.length ; i++){
                 int diff = prices[i] - prices[i - 1];
                 for (int j = k ; j >= 1 ; j--){
-                    part[i][j] = Math.max(total[i - 1][j - 1] + Math.max(0, diff), part[i - 1][j] + diff);
+                    part[i][j] = Math.max(total[i - 1][j - 1]
+                     + Math.max(0, diff), part[i - 1][j] + diff);
                     total[i][j] = Math.max(part[i][j], total[i - 1][j]);
                 }
             }
