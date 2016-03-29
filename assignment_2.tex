@@ -424,7 +424,7 @@ Basic Binary Search algorithm
 
 \textbf{Solution}
 
-~~It's not a conventional way of using DP. Detailed Description can be seen below, REVIEW ``Best Tie to Buy and Sell Stock'' series.
+~~It's not a conventional way of using DP. Detailed Description can be seen below, REVIEW ``Best Time to Buy and Sell Stock'' series.
 
 \includegraphics[width=1\columnwidth]{figures/188_best_time_to_buy_and_sell_stock_iv}
 
@@ -530,7 +530,8 @@ Basic Binary Search algorithm
     Reverse a singly linked list.
 
     Hint:
-    A linked list can be reversed either iteratively or recursively. Could you implement both?
+    A linked list can be reversed either iteratively or recursively.
+     Could you implement both?
 
 
     https://leetcode.com/problems/reverse-linked-list/
@@ -561,7 +562,9 @@ Recursive solution, needs to be \textbf{REVIEWED SEVERAL TIMES!} I still cannot 
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Reverse a linked list from position m to n. Do it in-place and in one-pass.
+
+    Reverse a linked list from position m to n.
+     Do it in-place and in one-pass.
 
     For example:
     Given 1->2->3->4->5->NULL, m = 2 and n = 4,
@@ -570,7 +573,7 @@ Recursive solution, needs to be \textbf{REVIEWED SEVERAL TIMES!} I still cannot 
 
     Note:
     Given m, n satisfy the following condition:
-    1 ¡Ü m ¡Ü n ¡Ü length of list.
+    1 $<=$ m $<=$ n $<=$ length of list.
 
     https://leetcode.com/problems/reverse-linked-list-ii/
 
@@ -660,7 +663,9 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+    Given a sorted linked list,
+     delete all duplicates such that each element appear only once.
 
     For example,
     Given 1->1->2, return 1->2.
@@ -680,6 +685,37 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 82 Remove Duplicates from Sorted List II
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 82 Remove Duplicates from Sorted List II}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    Given a sorted linked list, delete all nodes that have duplicate numbers,
+     leaving only distinct numbers from the original list.
+
+    For example,
+    Given 1->2->3->3->4->4->5, return 1->2->5.
+    Given 1->1->1->2->3, return 2->3.
+
+    https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~My solution is to use `prev' and `cur` pointer to deal with such problem. `prev' maintains lists which already be processed to have only distinct values; `cur' is used to skip all adjacent elements whose values are equal.
+
+~~There is another interesting train of thought, where distinct value means the value of element is not equal to its neighbors(both left side and right side.).
+
+\javacode{Pro82}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 328 Odd Even Linked List
 %----------------------------------------------------------------------------------------
 
@@ -688,8 +724,10 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given a singly linked list, group all odd nodes together followed by the even nodes.
-    Please note here we are talking about the node number and not the value in the nodes.
+    Given a singly linked list,
+     group all odd nodes together followed by the even nodes.
+    Please note here we are talking about
+     the node number and not the value in the nodes.
 
     You should try to do it in place. The program should run in
      O(1) space complexity and O(nodes) time complexity.
@@ -753,7 +791,8 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Write a program to find the node at which the intersection of two singly linked lists begins.
+    Write a program to find the node at which
+     the intersection of two singly linked lists begins.
 
 
     For example, the following two linked lists:
@@ -814,58 +853,50 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 82 Remove Duplicates from Sorted List II
+%	PROBLEM 23 Merge k Sorted Lists
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}
-\title{\textbf{\large 82 Remove Duplicates from Sorted List II}}
+\title{\textbf{\large 23 Merge k Sorted Lists}}
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given a sorted linked list, delete all nodes that have duplicate numbers,
-     leaving only distinct numbers from the original list.
 
-    For example,
-    Given 1->2->3->3->4->4->5, return 1->2->5.
-    Given 1->1->1->2->3, return 2->3.
+    Merge k sorted linked lists and return it as one sorted list.
+     Analyze and describe its complexity.
 
-    https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+    https://leetcode.com/problems/merge-k-sorted-lists/
 
 \end{lstlisting}
 
-\textbf{Solution}
+\textbf{Solution 1 \& 2}
 
-~~My solution is to use `prev' and `cur` pointer to deal with such problem. `prev' maintains lists which already be processed to have only distinct values; `cur' is used to skip all adjacent elements whose values are equal.
+~~Solution 1 is Brute force. With $O(nk^2) runtime and O(1) space.$ ($nk^2$ comes from 2n + 3n + ... + kn). We may skip Solution 1 here.
 
-~~There is another interesting train of thought, where distinct value means the value of element is not equal to its neighbors(both left side and right side.).
+~~ Solution 2 makes use of heap. Keep a heap with min root, pop one , link it into result, push its next node.
 
-\javacode{Pro82}{Solution}
+~~Since Heap has a complexity of log(k) runtime with nk elements, the whole process has a $O(kn logk) runtime and O(k) space$ complexity.
 
-\end{homeworkProblem}
-\newpage
+\javacode{Pro23_1}{Solution}
 
-%----------------------------------------------------------------------------------------
-%	PROBLEM 66 Plus One
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 66 Plus One}}
+\textbf{Solution 3}
 
 
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given a non-negative number represented as an array of digits, plus one to the number.
+~~Solution 3 is still of $O(kn logk) runtime$ but with $O(1) space$.
 
-    The digits are stored such that the most significant digit is at the head of the list.
+~~ The number of lists reduces from:
 
-    https://leetcode.com/problems/plus-one/
+~~~~$k -> k / 2 -> k / 4 -> ... -> 2 -> 1$
 
-\end{lstlisting}
+~~When the size of lists increases from :
 
-\textbf{Solution}
+~~~~$n -> 2n -> 4n -> ... -> 2^{logk}n$
 
-~~Though it is correct to use carry like we usually do when doing sum action, plus one is not as complicated to use carry digit. See listing \ref{Pro66}, it's a pretty lovely solution.
+~~ So the runtime complexity is:
 
-\javacode{Pro66}{Solution}
+~~~~$kn + k/2*2n + ... + 2^{logk}n = nk logk$
+
+\javacode{Pro23_2}{Solution}
 
 \end{homeworkProblem}
 \newpage
@@ -879,8 +910,8 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given a singly linked list L: L0->L1->¡­->Ln-1->Ln,
-    reorder it to: L0->Ln->L1->Ln-1->L2->Ln-2->¡­
+    Given a singly linked list L: L0->L1->...->Ln-1->Ln,
+    reorder it to: L0->Ln->L1->Ln-1->L2->Ln-2->...
 
     You must do this in-place without altering the nodes' values.
 
@@ -893,7 +924,7 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \textbf{Solution}
 
-~~The train of thought is somewhat straightforward, just find the middle element, reverse the latter half, and reconnect elements in first half and second half. But not coding in IDE to solve a problem of Medium difficulty currently is impossible to me...
+~~The train of thought is somewhat straightforward, just find the middle element, reverse the latter half, and reconnect elements in first half and second half. But not coding in IDE to solve a problem of Medium difficulty is impossible to me currently...
 
 \javacode{Pro143}{Solution}
 
@@ -994,6 +1025,8 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \javacode{Pro191_2}{Solution 2}
 
+~~What's more, using n & (n-1) also does excellent work. Mind those boundaries.
+
 \end{homeworkProblem}
 \newpage
 
@@ -1071,6 +1104,66 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 24 Swap Nodes in Pairs
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 24 Swap Nodes in Pairs}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a linked list, swap every two adjacent nodes and return its head.
+
+    For example,
+    Given 1->2->3->4, you should return the list as 2->1->4->3.
+
+    Your algorithm should use only constant space.
+     You may not modify the values in the list, only nodes itself can be changed.
+
+    https://leetcode.com/problems/swap-nodes-in-pairs/
+
+\end{lstlisting}
+
+
+\textbf{Solution}
+
+~~Not many tactics, just maintain 2 pointers to reverse cur and next.
+
+\javacode{Pro24}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 66 Plus One
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 66 Plus One}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    Given a non-negative number represented as an array of digits,
+     plus one to the number.
+
+    The digits are stored such that
+     the most significant digit is at the head of the list.
+
+    https://leetcode.com/problems/plus-one/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~Though it is correct to use carry like we usually do when doing sum action, plus one is not as complicated to use carry digit. See listing \ref{Pro66}, it's a pretty lovely solution.
+
+\javacode{Pro66}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 2 Add Two Numbers
 %----------------------------------------------------------------------------------------
 
@@ -1137,38 +1230,6 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 24 Swap Nodes in Pairs
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 24 Swap Nodes in Pairs}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Given a linked list, swap every two adjacent nodes and return its head.
-
-    For example,
-    Given 1->2->3->4, you should return the list as 2->1->4->3.
-
-    Your algorithm should use only constant space.
-     You may not modify the values in the list, only nodes itself can be changed.
-
-    https://leetcode.com/problems/swap-nodes-in-pairs/
-
-\end{lstlisting}
-
-
-\textbf{Solution}
-
-~~Not many tactics, just maintain 2 pointers to reverse cur and next.
-
-\javacode{Pro24}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
 %	PROBLEM 7 Reverse Integer
 %----------------------------------------------------------------------------------------
 
@@ -1224,6 +1285,39 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 190 Reverse Bits
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 190 Reverse Bits}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Reverse bits of a given 32 bits unsigned integer.
+
+    For example, given input 43261596
+     (represented in binary as 00000010100101000001111010011100),
+      return 964176192 (represented in binary as 00111001011110000010100101000000).
+
+    Follow up:
+    If this function is called many times, how would you optimize it?
+
+    https://leetcode.com/problems/reverse-bits/
+
+\end{lstlisting}
+
+
+\textbf{Solution}
+
+~~ Basically it is an easy bit manipulation problem. But when we need to call it several times, the method of optimization can be found \url{http://articles.leetcode.com/reverse-bits}.
+
+\javacode{Pro190}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 141 Linked List Cycle
 %----------------------------------------------------------------------------------------
 
@@ -1262,7 +1356,8 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
-    Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+    Given a linked list, return the node where the cycle begins.
+     If there is no cycle, return null.
 
     Note: Do not modify the linked list.
 
@@ -1276,11 +1371,11 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \textbf{Solution}
 
-~~If no restrictions in that `Note', we can easily handle this by HashSet.
+~~ If no restrictions in that `Note', we can easily handle this by HashSet.
 
 ~~ Now we can only use mathematical method to solve this problem.
 
-~~ Forget about this problem for the moment. How can we get the length of cycle? When slow and fast pointers continues iterating so as to meet for the 2nd time, the slow pointer passes exactly the length of the whole cycle!
+~~ Forget about this problem for a moment. How can we get the length of cycle? When slow and fast pointers continues iterating so as to meet for the 2nd time, the slow pointer passes exactly the length of the whole cycle(or an integral multiple of cycle length)!
 
 ~~ Coming back to this problem, we assign `a' as length from head of list to where the cycle begins, `b' as length from where cycle begins to where 2 pointers met, `c' as length passed by fast pointer after it first passed the node where they met.
 
@@ -1290,7 +1385,7 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 ~~ Which means, if we re-assign 2 pointers, let one starts from head of list, the other starts from where they met, they will meet at where the cycle begins!
 
-~~ For more details, refer to http://blog.sina.com.cn/s/blog\_6f611c300101fs1l.html
+~~ For more details, refer to \url{http://blog.sina.com.cn/s/blog\_6f611c300101fs1l.html}
 
 \javacode{Pro142}{Solution}
 
@@ -1358,39 +1453,6 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 190 Reverse Bits
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 190 Reverse Bits}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Reverse bits of a given 32 bits unsigned integer.
-
-    For example, given input 43261596
-     (represented in binary as 00000010100101000001111010011100),
-      return 964176192 (represented in binary as 00111001011110000010100101000000).
-
-    Follow up:
-    If this function is called many times, how would you optimize it?
-
-    https://leetcode.com/problems/reverse-bits/
-
-\end{lstlisting}
-
-
-\textbf{Solution}
-
-~~ Basically it is an easy bit manipulation problem. But when we need to call it several times, the method of optimization can be found \url{http://articles.leetcode.com/reverse-bits}.
-
-\javacode{Pro190}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
 %	PROBLEM 168 Excel Sheet Column Title
 %----------------------------------------------------------------------------------------
 
@@ -1400,7 +1462,8 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
-    Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+    Given a positive integer,
+     return its corresponding column title as appear in an Excel sheet.
 
     For example:
 
@@ -1542,7 +1605,8 @@ There is a more interesting solution, given the fact that the numbers only conta
 ~~ It is a representative problem of backtracking or recursion, I need to REVIEW it for several times!
 
 ~~ In fact, there are all kinds of algorithms to generate all-permutations.
- See http://blog.csdn.net/ljiabin/article/details/40151393
+ 
+ ~~See \url{http://blog.csdn.net/ljiabin/article/details/40151393}
 
 \javacode{Pro46}{Solution}
 
@@ -1713,9 +1777,7 @@ There is a more interesting solution, given the fact that the numbers only conta
     Notes: It is intended for this problem to be specified vaguely
      (ie, no given input specs).
      You are responsible to gather all the input requirements up front.
-
-
-
+     
 
     Requirements for atoi:
     The function first discards as many whitespace characters as necessary
@@ -1746,6 +1808,42 @@ There is a more interesting solution, given the fact that the numbers only conta
 ~~ The biggest difficulty of this problem is that there are so many edge cases(though less than those in valid number).
 
 \javacode{Pro8}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 28 Implement strStr()
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 28 Implement strStr()}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+    Empty cells are indicated by the character '.'.
+
+    You may assume that there will be only one unique solution.
+
+
+    A sudoku puzzle...
+
+
+    ...and its solution numbers marked in red.
+
+    https://leetcode.com/problems/sudoku-solver/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~An easy string manipulating problem. REVIEW it and IMPROVE it since I'm using a $O(mn)$ solution, there's another famous algorithm named KMP which can solve this problem with lower complexity.
+
+~~ And also don't forget the solution on ``Clean Code Handbook''.
+
+\javacode{Pro28}{Solution}
 
 \end{homeworkProblem}
 \newpage
@@ -1786,7 +1884,7 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 \textbf{Solution 2}
 
-~~The reason why I record Solution 2 in such an excitement is that the algorithm is FUCKING excellent!!
+~~The reason why I record Solution 2 in such an excitement is that the algorithm is FXXXING excellent!!
 
 ~~We would need 32 iterations, each calculating the number of 1's for the ith bit of all n numbers. Since a majority must exist, therefore, either count of 1's $>$ count of 0's or vice versa (but can never be equal). The majority number¡¯s ith bit must be the one bit that has the greater count.(Words below are copied from Solutions of this problem in Leetcode)
 
@@ -5528,55 +5626,6 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
-%	PROBLEM 23 Merge k Sorted Lists
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 23 Merge k Sorted Lists}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Merge k sorted linked lists and return it as one sorted list.
-     Analyze and describe its complexity.
-
-    https://leetcode.com/problems/merge-k-sorted-lists/
-
-\end{lstlisting}
-
-\textbf{Solution 1 \& 2}
-
-~~Solution 1 is Brute force. With $O(nk^2) runtime and O(1) space.$ ($nk^2$ comes from 2n + 3n + ... + kn). We may skip Solution 1 here.
-
-~~ Solution 2 makes use of heap. Keep a heap with min root, pop one , link it into result, push its next node.
-
-~~Since Heap has a complexity of log(k) runtime with nk elements, the whole process has a $O(kn logk) runtime and O(k) space$ complexity.
-
-\javacode{Pro23_1}{Solution}
-
-\textbf{Solution 3}
-
-
-~~Solution 3 is still of $O(kn logk) runtime$ but with $O(1) space$.
-
-~~ The number of lists reduces from:
-
-~~~~$k -> k / 2 -> k / 4 -> ... -> 2 -> 1$
-
-~~When the size of lists increases from :
-
-~~~~$n -> 2n -> 4n -> ... -> 2^{logk}n$
-
-~~ So the runtime complexity is:
-
-~~~~$kn + k/2*2n + ... + 2^{logk}n = nk logk$
-
-\javacode{Pro23_2}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
 %	PROBLEM 138 Copy List with Random Pointer
 %----------------------------------------------------------------------------------------
 
@@ -8953,42 +9002,6 @@ Below is a solution without reducing 1 to all elements.
 ~~Just like ``N-Queens'', pre-processing will much accelerate the speed.
 
 \javacode{Pro37}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 28 Implement strStr()
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 28 Implement strStr()}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Write a program to solve a Sudoku puzzle by filling the empty cells.
-
-    Empty cells are indicated by the character '.'.
-
-    You may assume that there will be only one unique solution.
-
-
-    A sudoku puzzle...
-
-
-    ...and its solution numbers marked in red.
-
-    https://leetcode.com/problems/sudoku-solver/
-
-\end{lstlisting}
-
-\textbf{Solution}
-
-~~An easy string manipulating problem. REVIEW it and IMPROVE it since I'm using a $O(mn)$ solution, there's another famous algorithm named KMP which can solve this problem with lower complexity.
-
-~~ And also don't forget the solution on ``Clean Code Handbook''.
-
-\javacode{Pro28}{Solution}
 
 \end{homeworkProblem}
 \newpage
