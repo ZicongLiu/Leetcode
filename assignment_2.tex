@@ -3440,8 +3440,8 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 
     Note:
     You must not modify the array (assume the array is read only).
-    You must use only constant, $O(1)$ extra space.
-    Your runtime complexity should be less than $O(n^2)$.
+    You must use only constant, O(1) extra space.
+    Your runtime complexity should be less than O(n^2).
     There is only one duplicate number in the array,
      but it could be repeated more than once.
 
@@ -3500,14 +3500,35 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 \end{lstlisting}
 
 
-\textbf{Solution}
+\textbf{Solution - Using Sum}
 
 ~~ Since there is only one missing element, the different between sum of the array and 0 to n is exactly what is missing.
 
 ~~ Binary search similar to Problem ``Find the Duplicate Number'' is also proper for this problem.(Remember to sort the array first if we don't want to calculate the count.)
 
-\javacode{Pro268}{Solution}
+\javacode{Pro268_1}{Solution 1}
 
+\textbf{Solution - Mark Position}
+
+~~ Solution 2 is to set up a new array, with a length more than 1 element of former array. In the new array, the elements are the same of (index + 1). Every time we find a number in old array, we set element in corresponding position in new array -1. Finally we iterate the new array, the element which is not changed to -1 is what we want.
+
+~~ Some similar solutions including Using Hashset or sorted array to store the count of each number to see if there is a non-existing element.
+
+\javacode{Pro268_2}{Solution 2}
+
+\textbf{Solution - Bit Manipulation}
+
+~~This solution is interesting. See the steps first.
+
+\begin{enumerate}
+  \item XOR all the array elements, let the result of XOR be X1.
+  \item XOR all numbers from 1 to n, let XOR be X2.
+  \item XOR of X1 and X2 gives the missing number.
+\end{enumerate}
+
+~~Feel familiar? The insight of these steps is exactly like ``Single Number'', or to be more specific, the characteristic of XOR operator.
+
+\ccode{Pro268_3}{Solution 3}
 
 \end{homeworkProblem}
 \newpage
@@ -3577,7 +3598,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 1}
 
-~~ Plenty of methods to solve the problem. REVIEW it! Solution is to use recursion to solve the problem.
+~~ Plenty of methods to solve the problem. First solution is to use recursion to solve the problem.
 
 ~~ However, code on ``Clean Code Handbook'' is extremely clean and charming!
 
@@ -3585,7 +3606,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~ A valid binary search tree has the attribute to keep ascending order when traversing the tree inorderly.
+~~ A valid binary search tree has the attribute to keep ascending order when traversing the tree in an inorder order.
 
 \javacode{Pro98_2}{Solution 2}
 
@@ -3670,7 +3691,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ DFS will get StackOverflowException, so use BFS to solve the problem.
 
-~~ REVIEW and why my DFS solution StackOverflow?!
+~~ (Honestly, I don't know why my DFS solution StackOverflow?!)
 
 \javacode{Pro130}{Solution}
 
@@ -3746,7 +3767,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ Reference: how to get Reverse Polish Expression :
 
-\url{http://wenku.baidu.com/link?url=YS3gwjS88L6psfiCrTK7HEmnsYe58foX6EZ9YZRSK8wvS4xhIxgOHHjU43jIqxqjKMVb9MHqZsyx1LxtjqvknS2QLHj0nLJowkiucRt3LFK}
+\url{http://blog.csdn.net/signsmile/article/details/2877729}
 
 
 \javacode{Pro224}{Solution}
