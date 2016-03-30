@@ -8,7 +8,7 @@
  * }
  */
 public class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q){
         TreeNode curNode = root;
         int minVal = Math.min(p.val, q.val);
         int maxVal = Math.max(p.val, q.val);

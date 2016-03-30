@@ -9,9 +9,8 @@
  */
 public class Solution {
     public boolean findPath(TreeNode curNode, int remainingSum){
-        if (curNode == null){
+        if (curNode == null)
             return false;
-        }
         remainingSum -= curNode.val;
         if (curNode.left == null && curNode.right == null){
             if (remainingSum == 0)

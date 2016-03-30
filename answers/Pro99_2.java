@@ -33,7 +33,7 @@ public class Solution {
             }
             else{
                 //curNode.left != null, so find rightmost(predecessor)
-                 node in left subtree
+                // node in left subtree
                 TreeNode movingNode = curNode.left;
                 while (movingNode.right != null && movingNode.right != curNode){
                     movingNode = movingNode.right;
@@ -62,7 +62,7 @@ public class Solution {
                                 mistakenNode2 = curNode;
                             }
                         }
-                     }
+                    }
                     prev = curNode;
                     curNode = curNode.right;
                 }

@@ -21,6 +21,7 @@ public class Solution {
             return true;
         }
         
-        return  (Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1) && isBalanced(root.left) && isBalanced(root.right);
+        return  (Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1)
+         && isBalanced(root.left) && isBalanced(root.right);
     }
 }

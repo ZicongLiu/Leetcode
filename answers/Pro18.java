@@ -10,7 +10,6 @@ public class Solution {
                 while (idx > start && idx <= end && nums[idx] == nums[idx - 1]){
                     idx ++;
                 }
-                
                 if (idx > end){
                     break;
                 }
@@ -21,11 +20,9 @@ public class Solution {
                     result.addAll(combine(curEle, oldList));
                 }
             }
-            
         }
         return (result.size() != 0) ? result : null;
     }
-    
     public List<List<Integer>> twoSum(int[] nums, int target,
      int start, int end){
         List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -35,14 +32,11 @@ public class Solution {
             int val1 = nums[idx1];
             int val2 = nums[idx2];
             int sum = val1 + val2;
-            
             if (sum == target){
                 List<Integer> newPair = new ArrayList<Integer>();
                 newPair.add(val1);
                 newPair.add(val2);
-                
                 result.add(newPair);
-                
                 idx2 --;
                 while(idx2 >= start && idx2 < end
                  && nums[idx2] == nums[idx2 + 1]){
@@ -61,10 +55,8 @@ public class Solution {
                 idx1 ++;
             }
         }
-        
         return (result.size() == 0) ? null : result;
     }
-    
     public List<List<Integer>> combine(int ele, List<List<Integer>> oldList){
         List<List<Integer>> newList = new ArrayList<List<Integer>>();
         for (List<Integer> oldItem : oldList){
@@ -73,10 +65,8 @@ public class Solution {
             newItem.addAll(oldItem);
             newList.add(newItem);
         }
-        
         return newList;
     }
-    
     public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
         List<List<Integer>> result = kSum(4, nums, target, 0, nums.length - 1);

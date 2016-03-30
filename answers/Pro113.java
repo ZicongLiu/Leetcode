@@ -10,7 +10,8 @@
 public class Solution {
     List<List<Integer>> result = new ArrayList<List<Integer>>();
     
-    public void findPath(TreeNode curNode, int remainingSum, List<Integer> curPath){
+    public void findPath(TreeNode curNode, int remainingSum,
+                         List<Integer> curPath){
         if (curNode == null){
             return;
         }

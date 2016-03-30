@@ -31,8 +31,10 @@ public class Solution {
             // To avoid duplicates, think of it.
             // For example, 11167,
             // after 1->11->111->1116->11167->1117-> next what?
-            // (116..., if we don't add such while loop, it will continue to add 111...)
-            while (idx < candidates.length - 1 && candidates[idx] == candidates[idx + 1]){
+            // (116..., if we don't add such while loop,
+            //           it will continue to add 111...)
+            while (idx < candidates.length - 1
+                 && candidates[idx] == candidates[idx + 1]){
                 idx ++;
             }
         }

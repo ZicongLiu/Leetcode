@@ -34,7 +34,7 @@ public class Solution {
             int rHeight = getLeftHeight(curNode.right);
             
             if (lHeight > rHeight){
-                // +1 means add the root node
+                // +1 means addding the root node
                 count += ((1 << rHeight) - 1) + 1;
                 curNode = curNode.left;
             }
