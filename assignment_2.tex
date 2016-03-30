@@ -1025,7 +1025,7 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 
 \javacode{Pro191_2}{Solution 2}
 
-~~What's more, using n & (n-1) also does excellent work. Mind those boundaries.
+~~What's more, using n \& (n-1) also does excellent work. Mind those boundaries.
 
 \end{homeworkProblem}
 \newpage
@@ -2550,6 +2550,9 @@ The Sieve of Eratosthenes uses an extra $O(n)$ memory and its runtime complexity
 ~~Train of thought is similar to 0-1 knapsack problems. $dp[i] = min{dp[i - square_k] + 1}$
 
 \javacode{Pro279_2}{Solution 2}
+
+~~A more concise dp version
+\javacode{Pro279_2_2}{Solution 2_2}
 
 \textbf{Solution 3}
 
