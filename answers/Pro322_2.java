@@ -4,6 +4,7 @@
         for(int i = 1; i <= amount; i++){
             dp[i] = Integer.MAX_VALUE;
             for(int j = 0; j < coins.length; j++){
+                // remember to check i - coins[j] >= 0, or you will get array out of bounds
                 if(i - coins[j] >= 0 && dp[i - coins[j]] != Integer.MAX_VALUE) {
                     dp[i] = Math.min(dp[i],dp[i-coins[j]] + 1);
                 }
