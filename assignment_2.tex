@@ -5986,7 +5986,10 @@ Below is a solution without reducing 1 to all elements.
 
 ~~A greedy or DP problem. The maximum steps we can go on is Math.max(curMax, nums[idx]), don't forget to reduce curMax by 1 simulating every step we proceed.
 
-\javacode{Pro55}{Solution}
+\javacode{Pro55}{Solution1.1}
+
+~~A more concise version. Do not need to deduct 1, only need to check if we can reach the first elements finally.
+\javacode{Pro55_2}{Solution2.1}
 
 \end{homeworkProblem}
 \newpage
@@ -10286,6 +10289,8 @@ This video is easy to understand. \url{https://www.youtube.com/watch?v=EH6h7WA7s
 ~~~~When we meet nums[i] $<=$ sum, eg: [1,2,10], curSum = 0 at first. 1 $<=$ 0+1, then curSum += 1; then 2 $<=$ 1+1, curSum += 2;
 
 ~~~~When nums[i] $>$ sum, eg, curSum=4 \& nums[i]=10 in previous example, now we cannot reach sum more than curSum, we then add curSum+1 to out list to get more conditions for sum. What is the maximum sum we can reach now? The answer is curSum*2+1(curSum+curSum+1).
+
+~~~~Note that a common pitfall is that sum may exceed max int, so we use long instead.
 
 \javacode{Pro330}{Solution}
 
