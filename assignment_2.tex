@@ -6029,6 +6029,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~Still greedy, but needs some time to figure out the correctness....(Honestly, I don't think this is a complete greedy problem, since the solution is not that greedy. It's more like a DP problem.)
 
+~~The main idea is based on greedy. Let's say the range of the current jump is [curBegin, lastMax], curMax is the farthest point that all points in [curBegin, lastMax] can reach. Once the current point reaches lastMax, then trigger another jump, and set the new lastMax with curMax. (But why extending with max will lead to correct solution?)
 \javacode{Pro45}{Solution}
 
 \end{homeworkProblem}
@@ -10290,7 +10291,7 @@ This video is easy to understand. \url{https://www.youtube.com/watch?v=EH6h7WA7s
 
 ~~~~When nums[i] $>$ sum, eg, curSum=4 \& nums[i]=10 in previous example, now we cannot reach sum more than curSum, we then add curSum+1 to out list to get more conditions for sum. What is the maximum sum we can reach now? The answer is curSum*2+1(curSum+curSum+1).
 
-~~~~Note that a common pitfall is that sum may exceed max int, so we use long instead.
+~~~~Note that a common pitfall is that sum may exceed max int, so we use long instead of int. (This is why for test case [1,2,31,33], 2147483647, I got wrong at first) 
 
 \javacode{Pro330}{Solution}
 
