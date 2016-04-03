@@ -51,7 +51,8 @@ public class Solution {
                 }
             }
         }
-        findWordCombinations(new ArrayList<String>(), s.length() , s, wordSnippets);
+        findWordCombinations(new ArrayList<String>(),
+             s.length() , s, wordSnippets);
         return result;
     }
 }

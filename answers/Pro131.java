@@ -10,16 +10,14 @@ public class Solution {
             start ++;
             end --;
         }
-        
         return true;
     }
-    
+
     private void findPalindrome(String str, int startIdx, List<String> curList){
         if (startIdx == str.length()){
             result.add(new ArrayList(curList));
             return;
         }
-        
         for (int endIdx = startIdx + 1 ; endIdx <= str.length() ; endIdx ++){
             String newStr = str.substring(startIdx, endIdx);
             if (isPalindrome(newStr)){
@@ -28,12 +26,10 @@ public class Solution {
                 curList.remove(curList.size() - 1);
             }
         }
-        
     }
-    
+
     public List<List<String>> partition(String s) {
         findPalindrome(s, 0, new ArrayList<String>());
-        
         return result;
     }
 }

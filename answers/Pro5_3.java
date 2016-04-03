@@ -14,9 +14,11 @@ public class Solution {
         int rightBound = 0;
         int mid = 1;
         for (int idx = 1 ; idx < lens.length ; idx ++){
-            lens[idx] = (rightBound > idx) ? Math.min(lens[2 * mid - idx], rightBound - idx): 0;
+            lens[idx] = (rightBound > idx)
+             ? Math.min(lens[2 * mid - idx], rightBound - idx): 0;
             while (idx + lens[idx] < curStr.length() && idx - lens[idx] >= 0
-                    && curStr.charAt(idx + lens[idx]) == curStr.charAt(idx - lens[idx])){
+                    && curStr.charAt(idx + lens[idx])
+                     == curStr.charAt(idx - lens[idx])){
                 lens[idx] ++;
             }
             if (idx + lens[idx] > rightBound){

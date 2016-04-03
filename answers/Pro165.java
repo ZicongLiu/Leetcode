@@ -25,7 +25,9 @@ public class Solution {
             idx2++;
         }
         if (idx1 < version1.length()){
-            while (idx1 < version1.length() && (version1.charAt(idx1) == '.' || version1.charAt(idx1) == '0')){
+            while (idx1 < version1.length() 
+                && (version1.charAt(idx1) == '.'
+                 || version1.charAt(idx1) == '0')){
                 idx1 ++;
             }
             if (idx1 < version1.length()){
@@ -33,7 +35,9 @@ public class Solution {
             }
         }
         else if (idx2 < version2.length()){
-            while (idx2 < version2.length() && (version2.charAt(idx2) == '.' || version2.charAt(idx2) == '0')){
+            while (idx2 < version2.length()
+             && (version2.charAt(idx2) == '.'
+              || version2.charAt(idx2) == '0')){
                 idx2 ++;
             }
             if (idx2 < version2.length()){

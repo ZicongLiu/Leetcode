@@ -1,42 +1,35 @@
 public class Solution {
-    public String minWindow(String s, String t) {
-        if (s.length() == 0 || t.length() == 0){
-            return "";
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        if (nums.length == 0){
+            return result;
         }
-        int[] require = new int[256];
-        boolean[] needLetter = new boolean[256];
-        for (int i = 0 ; i < t.length() ; i ++){
-            needLetter[t.charAt(i)] = true;
-            require[t.charAt(i)] ++;
-        }
-        int count = t.length();
-        int minLength = Integer.MAX_VALUE;
-        String minStr = "";
-        int i = 0;
-        int j = -1;
-        while (i < s.length() && j < s.length()){
-            if (count > 0){
-                j ++;
-                if (j >= s.length()){
-                    break;
+        Arrays.sort(nums);
+        List<List<Integer>> generatedList = new ArrayList<List<Integer>>();
+        result.add(new ArrayList<Integer>());
+        for (int eleIdx = 0 ; eleIdx < nums.length ; eleIdx ++){
+            int num = nums[eleIdx];
+            if (eleIdx > 0 && nums[eleIdx] == nums[eleIdx - 1]){
+                List<List<Integer>> newGeneratedList = new ArrayList<List<Integer>>();
+                for (int formerIdx = 0 ; formerIdx < generatedList.size() ; formerIdx ++){
+                    List<Integer> formerElement = new ArrayList(generatedList.get(formerIdx));
+                    formerElement.add(num);
+                    newGeneratedList.add(formerElement);
                 }
-                require[s.charAt(j)] --;
-                if (needLetter[s.charAt(j)] && require[s.charAt(j)] >= 0){
-                    count --;
+                result.addAll(newGeneratedList);
+                generatedList = newGeneratedList;
+            }
+            else{
+                generatedList.clear();
+                for (int formerIdx = 0 ; formerIdx < result.size() ; formerIdx ++){
+                    List<Integer> formerElement = new ArrayList(result.get(formerIdx));
+                    formerElement.add(num);
+                    generatedList.add(formerElement);
                 }
-            }else{
-                int curLength = j - i + 1;
-                if (curLength < minLength){
-                    minLength = curLength;
-                    minStr = s.substring(i, j + 1);
-                }
-                require[s.charAt(i)] ++;
-                if (needLetter[s.charAt(i)] && require[s.charAt(i)] > 0){
-                    count ++;
-                }
-                i ++;  
+                result.addAll(generatedList);
             }
         }
-        return minStr;
+        
+        return result;
     }
 }

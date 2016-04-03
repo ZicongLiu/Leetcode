@@ -5,7 +5,8 @@ class TrieNode{
     
     public TrieNode(){
         isWord = false;
-        for (int childrenIdx = 0 ; childrenIdx < children.length ; childrenIdx++){
+        for (int childrenIdx = 0 ;
+             childrenIdx < children.length ; childrenIdx++){
             children[childrenIdx] = null;
         }
     }
@@ -65,6 +66,7 @@ public class WordDictionary {
             }
             else{
                 char compareCh = cur.val;
+                // Is this condition check necessary?
                 if (curCh == compareCh){
                     return match(cur, word, startIdx + 1);
                 }

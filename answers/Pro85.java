@@ -30,15 +30,17 @@ public class Solution {
         for (int i = m - 1 ; i >= 0 ; i --){
             stack = new Stack<Integer>();
             for (int j = 0 ; j <= n ; j ++){
-                if (j != n && (stack.isEmpty() || nums[i][stack.peek()] < nums[i][j])){
+                if (j != n && (stack.isEmpty()
+                     || nums[i][stack.peek()] < nums[i][j])){
                     stack.push(j);
                     continue;
                 }
                 else{
-                    while (!stack.isEmpty() && (j == n || nums[i][stack.peek()] >= nums[i][j])){
+                    while (!stack.isEmpty()
+                     && (j == n || nums[i][stack.peek()] >= nums[i][j])){
                         int idx = stack.pop();
                         int height = nums[i][idx];
-                        int width = (stack.isEmpty()) ? j : j - stack.peek() - 1 ;
+                        int width = (stack.isEmpty())? j: j - stack.peek() - 1;
                         max = Math.max(width * height, max);
                     }
                     

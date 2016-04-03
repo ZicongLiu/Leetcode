@@ -51,7 +51,8 @@ public class Solution {
         if (tens < 20 && tens != 0) {
             result += underTwenty[tens] + " ";
         } else if (tens != 0){
-            result += productTen[ten] + " " + ((one > 0) ? underTwenty[one] + " " : "");
+            result += productTen[ten] + " " +
+                 ((one > 0) ? underTwenty[one] + " " : "");
         }
 
         return result;

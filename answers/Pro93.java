@@ -13,7 +13,8 @@ public class Solution {
             return;
         }
         
-        for (int endIdx = startIdx + 1 ; endIdx <= Math.min(s.length(), startIdx + 3) ; endIdx ++){
+        for (int endIdx = startIdx + 1 ;
+                 endIdx <= Math.min(s.length(), startIdx + 3) ; endIdx ++){
             String newNum = s.substring(startIdx, endIdx);
             if (endIdx > startIdx + 1 && s.charAt(startIdx) == '0'){
                 return;

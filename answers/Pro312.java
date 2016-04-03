@@ -13,7 +13,9 @@ public class Solution {
             for (int start = 0 ; start < totalNums.length - len ; start ++){
                 int end = start + len;
                 for (int mid = start + 1 ; mid < end ; mid ++){
-                    dp[start][end] = Math.max(dp[start][end], totalNums[start] * totalNums[mid] * totalNums[end] + dp[start][mid] + dp[mid][end]);
+                    dp[start][end] = Math.max(dp[start][end], 
+                        totalNums[start] * totalNums[mid] * totalNums[end]
+                         + dp[start][mid] + dp[mid][end]);
                 }
             }
         }

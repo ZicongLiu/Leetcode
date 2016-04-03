@@ -23,7 +23,8 @@ public class Solution {
     
     private void wordSearch(char[][] board, int curX, int curY,
      TrieNode curTrie, List<String> res){
-        if (curX < 0 || curY < 0 || curX >= board.length || curY >= board[0].length
+        if (curX < 0 || curY < 0
+            || curX >= board.length || curY >= board[0].length
             || board[curX][curY] == '#'){
             return;
         }

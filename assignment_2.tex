@@ -1821,25 +1821,19 @@ There is a more interesting solution, given the fact that the numbers only conta
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Write a program to solve a Sudoku puzzle by filling the empty cells.
 
-    Empty cells are indicated by the character '.'.
+    Implement strStr().
 
-    You may assume that there will be only one unique solution.
+    Returns the index of the first occurrence of needle in haystack,
+     or -1 if needle is not part of haystack.
 
-
-    A sudoku puzzle...
-
-
-    ...and its solution numbers marked in red.
-
-    https://leetcode.com/problems/sudoku-solver/
+    https://leetcode.com/problems/implement-strstr/
 
 \end{lstlisting}
 
 \textbf{Solution}
 
-~~An easy string manipulating problem. REVIEW it and IMPROVE it since I'm using a $O(mn)$ solution, there's another famous algorithm named KMP which can solve this problem with lower complexity.
+~~An easy string manipulating problem. Since I'm using a $O(mn)$ solution, and there's another famous algorithm named KMP which can solve this problem with lower complexity, the solution has the space for improvement.
 
 ~~ And also don't forget the solution on ``Clean Code Handbook''.
 
@@ -6193,7 +6187,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ When scrape nodes from a complete subtree together, we may combine them into a `\#' to simplify the tree structure, finally we should only get a single `\#' in the stack.
 
-~~ To be more specific, we first push every element we get into stack; if depth of current stack is larger or equal to 3 and the top 2 elements are both `\#' when the 3rd element is not(which will never happen, even if the original string contains 3 successive \`#', the first 2 will be combined into one single `\#'). We pop the 2 `\#'s out along with the 3rd non-`\#' element and push an extra `\#' instead.
+~~ To be more specific, we first push every element we get into stack; if depth of current stack is larger or equal to 3 and the top 2 elements are both `\#' when the 3rd element is not(which will never happen, even if the original string contains 3 successive `\#', the first 2 will be combined into one single `\#'). We pop the 2 `\#'s out along with the 3rd non-`\#' element and push an extra `\#' instead.
 
 ~~ Repeat the whole process.
 
@@ -6731,8 +6725,8 @@ Below is a solution without reducing 1 to all elements.
     Find the contiguous subarray within an array
      (containing at least one number) which has the largest sum.
 
-    For example, given the array [?2,1,?3,4,?1,2,1,?5,4],
-    the contiguous subarray [4,?1,2,1] has the largest sum = 6.
+    For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
+    the contiguous subarray [4,-1,2,1] has the largest sum = 6.
 
 
     More practice:
@@ -6746,14 +6740,26 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~Use DP to solve it. Let dp[i] be the maximum we can get until idx i, so dp[i] = max{dp[i - 1] + nums[i], nums[i]}.
+~~ This is a conventional DP problem, it's worth us carefully thinking about it.
+
+~~ What's the first solution comes into mind at first sight? Enumeration, of course, the Brute force method. However, when we talk about its complexity, we may need $O(n)$ to iterate both i and j, along with an extra $O(n)$ effort to sum up a[i...j], $O(N^3)$ in total.
+
+\javacode{Pro53_guide_1}{Guide 1}
+
+~~ How to optimize? Can we calculate the sum during the process of enumeration? The sum is actually formerSum + a[idx-1].
+
+\javacode{Pro53_guide_2}{Guide 2}
+
+~~ Divide and Conquer can even promote our solution further more. We may find a middle point, and the maximum subarray sum lies either on left, right, or go through the middle element(since we are finding consecutive sequence). Then the steps of algorithm is  to separate subarray according to a middle element and calculate optimal sum sum1 and sum2 start from middle element(With the time complexity $2*T(n/2) + O(n) = O(n logn)$);
+
+~~ Finally we can use DP to solve it. Let dp[i] be the maximum we can get until idx i, so dp[i] = max{dp[i - 1] + nums[i], nums[i]}.
 
 
 \javacode{Pro53_1}{Solution}
 
 \textbf{Solution Follow-up}
 
-~~ The follow up need us to do it in a divide and conquer way, as listing, which is copied from Internet, respectively calculating sums [startIdx, currentIdx], [currentIdx + 1, endIdx] and [startIdx, endIdx], use a binary search method to decide the value of currentIdx(so the runtime complexity is $O(n logn)$).
+~~ The follow up need us to do it in a divide and conquer way which is mentioned above, as listing, the code is copied from Internet, respectively calculating sums [startIdx, currentIdx], [currentIdx + 1, endIdx] and [startIdx, endIdx], use a binary search method to decide the value of currentIdx(so the runtime complexity is $O(n logn)$).
 
 \javacode{Pro53_2}{Solution Follow-up}
 
@@ -6934,7 +6940,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~This one is following previous problem ``Find Minimum in Rotated Sorted Array'', and though there are only several lines of code that are different, the problem is much harder than previous one. Take care of the condition when there are plenty of duplicates, for example, when the list is 10,1,10,10,10, this is when a[low] < a[high], which is not we want when using binary search(Think of why?).
+~~This one is following previous problem ``Find Minimum in Rotated Sorted Array'', and though there are only several lines of code that are different, the problem is much harder than previous one. Take care of the condition when there are plenty of duplicates, for example, when the list is 10,1,10,10,10, this is when a[low] $<$ a[high], which is not we want when using binary search(Think of why?).
 
 \javacode{Pro154}{Solution}
 
@@ -7095,7 +7101,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~ The second solution is a method.
+~~ The second solution is a DFS method. Interesting since it utilized 2 same function call to simulate picking or not picking element at curIdx.
 
 \javacode{Pro78_2}{Solution 2}
 
@@ -7143,7 +7149,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~The backtracking method. Dealing with duplicates are also the key insight.
+~~The backtracking method. Dealing with duplicates are also the key insight. The train of thought is somewhat like solution in ``Combination Sum II''.
 
 \javacode{Pro90_2}{Solution 2}
 
@@ -7161,7 +7167,7 @@ Below is a solution without reducing 1 to all elements.
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
     Given an integer array nums,
-     find the sum of the elements between indices i and j (i ¡Ü j), inclusive.
+     find the sum of the elements between indices i and j (i <= j), inclusive.
 
     Example:
     Given nums = [-2, 0, 3, -5, 2, -1]
@@ -7197,7 +7203,7 @@ Below is a solution without reducing 1 to all elements.
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
     Given an integer array nums, find the sum
-     of the elements between indices i and j (i ¡Ü j), inclusive.
+     of the elements between indices i and j (i <= j), inclusive.
 
     The update(i, val) function modifies nums by
      updating the element at index i to val.
@@ -7220,7 +7226,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ Using solution in former problem ``Range Sum Query - Immutable'' will get TLE, so try some other solutions.
 
-~~Make use of a very NB, very very very NB data structure! Binary Index Tree! REVIEW it!
+~~Make use of a freaking awesome data structure of niubility! Binary Index Tree(or Fenwick Tree)!
 
 ~~ For more reference on index trees, see
 
@@ -7253,7 +7259,7 @@ Below is a solution without reducing 1 to all elements.
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
-    Given a 2D matrix matrix, find the sum of the elements
+    Given a 2D matrix `matrix', find the sum of the elements
      inside the rectangle defined by its upper left corner
       (row1, col1) and lower right corner (row2, col2).
 
@@ -7450,9 +7456,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~A very complicated backtracking problem, takes me 1 and a half hour to finish it(and even in an IDE!!!)........ REVIEW!
-
-~~NEED IMPROVEMENT since I saw a ``Dynamic Programming'' tag beneath it. Will show the dp solution for ``Wildcard Matching'', but need REVIEWING!
+~~A very complicated backtracking problem, takes me 1 and a half hour to finish it(and even in an IDE!!!)........
 
 ~~Both this problem and next problem needs to be supplemented with missing DP or recursion solutions.
 
@@ -7625,7 +7629,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ Take care of those:
 
-~~~~ (1) numbers starts with '0' except for 0 itself;
+~~~~ (1) numbers starts with `0' except for 0 itself;
 
 ~~~~ (2) length out of bounds
 
@@ -7676,40 +7680,6 @@ Below is a solution without reducing 1 to all elements.
 \end{homeworkProblem}
 \newpage
 
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 132 Palindrome Partitioning II
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 132 Palindrome Partitioning II}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-    Given a string s, partition s such that every substring
-     of the partition is a palindrome.
-
-    Return the minimum cuts needed for a palindrome partitioning of s.
-
-    For example, given s = "aab",
-    Return 1 since the palindrome partitioning ["aa","b"]
-     could be produced using 1 cut.
-
-    https://leetcode.com/problems/palindrome-partitioning-ii/
-
-\end{lstlisting}
-
-\textbf{Solution}
-
-~~Solution from previous Problem ``Palindrome Partitioning'' will get TLE with long sequence with so many palindromes within it.(Even when I changed the train of thought to find the longest palindrome first and do the pruning when result list size is larger than min)
-
-~~So DP will be the alternative.
-
-\javacode{Pro132}{Solution}
-
-\end{homeworkProblem}
-\newpage
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 132 Palindrome Partitioning II
@@ -8165,7 +8135,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~The idea is like topological sort, since this is an undirected graph, find the node with degree of 1, remove them from the graph, until 1 or 2 nodes left.
 
-~~ Back news is: I used `while (remaining > 2)' to check if I get the result, which means I'm not totally understanding it.
+~~ Back news is: I used `while (remaining$ >$ 2)' to check if I get the result, which means I'm not totally understanding it.
 
 ~~ Take care when n == 1.
 
@@ -8230,7 +8200,7 @@ Below is a solution without reducing 1 to all elements.
 ~~~~then after we prcoess the 7:
 
 ~~~~~~S = [5,6,7]\\
-~~~~after w process the 2:
+~~~~after we process the 2:
 
 ~~~~~~S = [1,2,7]\\
 ~~~~after we process the 8:
@@ -8242,16 +8212,20 @@ Below is a solution without reducing 1 to all elements.
 ~~~~We process the 4:
 
 ~~~~~~S = [1,2,3,4]\\
-~~~~and now the next three lements:
+~~~~and now the next three elements:
 
 ~~~~~~S = [0,2,3,4,5,9]\\
-~~~~S is not the actual subsequence, but it is the right length (end ends in the right number).
+~~~~\textbf{S is not the actual subsequence}, but it is the right length (end ends in the right number).
 
-~~We are making n passes, and doing a binary search each time. So O(n log n) time.
+~~We are making n passes, and doing a binary search each time. So $O(n log n)$ time.
 
-~~Space: Assuming we are allowed to destroy the list, we don't need S. Since S will never be larger then the number of elements we have looked at, and we only need to look at each element once, we can just use the beginning of nums for S (keeping track of the size of "S" in a separate variable.
+~~Space: Assuming we are allowed to destroy the list, we don't need S. Since S will never be larger then the number of elements we have looked at, and we only need to look at each element once, we can just use the beginning of nums for S (keeping track of the size of ``S'' in a separate variable.
 
 \javacode{Pro300_1_2}{Solution 1.2}
+
+~~ Moreover, if we want to recover the actual subsequence, we may need to do some extra work. My solution is to maintain a LinkedList for each position, when there is a element bigger than former ones coming, add -1 to its head, the number of -1 depends on the maximum depth of former linked list. See code in listing \ref{Pro300_1_3}
+
+\javacode{Pro300_1_3}{Solution 1.2 - Recover actual subsequence}
 
 \end{homeworkProblem}
 \newpage
@@ -8271,7 +8245,7 @@ Below is a solution without reducing 1 to all elements.
 
     Formally the function should:
     Return true if there exists i, j, k
-    such that arr[i] < arr[j] < arr[k] given 0 ¡Ü i < j < k ¡Ü n-1 else return false.
+    such that arr[i] < arr[j] < arr[k] given 0 <= i < j < k <= n-1 else return false.
     Your algorithm should run in O(n) time complexity and O(1) space complexity.
 
     Examples:
@@ -8336,8 +8310,8 @@ Below is a solution without reducing 1 to all elements.
     void addWord(word)
     bool search(word)
     search(word) can search a literal word or a regular expression string
-     containing only letters $a-z$ or $.$.
-     A $.$ means it can represent any one letter.
+     containing only letters a-z or ..
+     A . means it can represent any one letter.
 
     For example:
 
@@ -8404,7 +8378,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~Problem 79.
 
-~~Solution is using straightforward backtracking method, be sure to return as soon as we get result, otherwise will get a TLE error.(I stuck in misusing || as |).
+~~Solution is using straightforward backtracking method, be sure to return as soon as we get result, otherwise will get a TLE error.(I stuck in misusing $\vert\vert$ as $\vert$).
 
 \javacode{Pro79}{Solution}
 
@@ -8459,9 +8433,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~This is the first problem I cannot finish!!!! Because I even cannot finish the testing of big data in Eclipse! More than 65536 bytes! And it stuck my computer!
-
-~~ NEED to IMPROVED!!
+~~This is the first problem I cannot finish for the first time!! Because I even cannot finish the testing of big data in Eclipse! More than 65536 bytes! And it stuck my computer!
 
 ~~ For optimizations, see
 
@@ -8820,9 +8792,9 @@ Below is a solution without reducing 1 to all elements.
 
 \end{lstlisting}
 
-\includegraphics[width=0.8\columnwidth]{figures/84_largest_rectangle_in_histogram_1}
+\includegraphics[width=0.25\columnwidth]{figures/84_largest_rectangle_in_histogram_1}
 
-\includegraphics[width=0.8\columnwidth]{figures/84_largest_rectangle_in_histogram_2}
+\includegraphics[width=0.25\columnwidth]{figures/84_largest_rectangle_in_histogram_2}
 
 \textbf{Solution}
 
@@ -8904,12 +8876,13 @@ Below is a solution without reducing 1 to all elements.
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Given two numbers represented as strings,
-     return multiplication of the numbers as a string.
 
-    Note: The numbers can be arbitrarily large and are non-negative.
+    Divide two integers without using multiplication,
+     division and mod operator.
 
-    https://leetcode.com/problems/multiply-strings/
+    If it is overflow, return MAX_INT.
+
+    https://leetcode.com/problems/divide-two-integers/
 
 \end{lstlisting}
 
@@ -8919,7 +8892,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~Without division and multiplication, remaining operators are +, - , and bit operators. The most straightforward way is to reduce divisor from dividend until remaining number is less than divisor, which will get TLE.
 
-~~Have you noticed that, << 1 is the same as *? That's the key insight to this problem. See code in listing.(There are also many edge cases!)
+~~Have you noticed that, $<<$ 1 is the same as * 2? That's the key insight to this problem. See code in listing.(There are still many edge cases!)
 
 ~~Something to take care. See in the listing, use `divisor $<= (dividend >> 1)$' instead of `dividend $<$ divisor', the latter will take 903ms to calculate Integer.MAX\_VALUE $/$ 2 while the former takes 0ms...
 
@@ -8955,49 +8928,11 @@ Below is a solution without reducing 1 to all elements.
 
 \end{lstlisting}
 
-\textbf{Solution}
-
-~~It's an easy problem, use 3 arrays to validate value on rows, columns and grids(with 3 * 3 size) are used.
-
-~~ Description in Note makes the problem even easier.
-
-\javacode{Pro36}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 36 Valid Sudoku
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 36 Valid Sudoku}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    Determine if a Sudoku is valid, according to:
-     Sudoku Puzzles - The Rules.
-
-    The Sudoku board could be partially filled,
-     where empty cells are filled with the character '.'.
-
-
-    A partially filled sudoku which is valid.
-
-    Note:
-    A valid Sudoku board (partially filled)
-     is not necessarily solvable.
-      Only the filled cells need to be validated.
-
-    https://leetcode.com/problems/valid-sudoku/
-
-\end{lstlisting}
-
 \includegraphics[width=0.3\columnwidth]{figures/36_valid_sudoku}
 
 \textbf{Solution}
 
-~~It's an easy problem, use 3 arrays to validate value on rows, columns and grids(with 3 * 3 size) are used.
+~~ It's an easy problem, use 3 arrays to validate value on rows, columns and grids(with 3 * 3 size) are used.
 
 ~~ Description in Note makes the problem even easier.
 
@@ -9087,7 +9022,7 @@ Below is a solution without reducing 1 to all elements.
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
     Given an array of n positive integers and a positive integer s,
-     find the minimal length of a subarray of which the sum $>=$ s.
+     find the minimal length of a subarray of which the sum >= s.
       If there isn't one, return 0 instead.
 
     For example, given the array [2,3,1,2,4,3] and s = 7,
@@ -9113,7 +9048,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~Second solution is to use binary search to find proper length to calculate the sum. See listing. REVIEW since the $O(n logn)$ is not written by myself.
+~~Second solution is to use binary search to find proper length to calculate the sum. See listing.
 
 ~~ The $O(n logn)$ solution.
 
@@ -9227,9 +9162,7 @@ Below is a solution without reducing 1 to all elements.
 
 \end{lstlisting}
 
-\textbf{Solution}
-
-~~REVIEW it since I haven't totally understood the solution yet.
+\textbf{Solution}`
 
 ~~ List the train of thought as below:
 
@@ -9384,9 +9317,9 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 1}
 
-~~Solution 1 is greedy. Iterating from front to end, when there is a pair which ratings[i] < ratings[i + 1], give candies[i] = 1 OR stay unchanged; give candies[i + 1] = candies[i] + 1; Then iterate backward, doing the similar operation, except for the condition when the $i^{th}$ people has already been given the candies, that's when we give the man max{candies[i] , candies[i + 1] + 1}.
+~~Solution 1 is greedy. Iterating from front to end, when there is a pair which ratings[i] $<$ ratings[i + 1], give candies[i] = 1 OR stay unchanged; give candies[i + 1] = candies[i] + 1; Then iterate backward, doing the similar operation, except for the condition when the $i^{th}$ people has already been given the candies, that's when we give the man max{candies[i] , candies[i + 1] + 1}.
 
-~~ Finally, don't forget to give all children who aren't given any candies 1 candy for comfort.(Consider of the input of [2,2,1])
+~~ Finally, don't forget to give all children who aren't given any candies 1 candy for comfort.(Consider the input of [2,2,1])
 
 \javacode{Pro135_1}{Solution 1}
 
@@ -9470,9 +9403,9 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~Solution 2 makes use of Binary Search, with a pretty complicated process on calculating the related index.
+~~ Solution 2 makes use of Binary Search, with a pretty complicated process on calculating the related index.
 
-~~ REVIEW this since the train of thought is quite interesting.
+~~ The train of thought is quite interesting.
 
 ~~ For detailed description on solution , visit \url{http://blog.csdn.net/zxzxy1988/article/details/8587244}
 
@@ -9516,13 +9449,13 @@ Below is a solution without reducing 1 to all elements.
 
 \end{lstlisting}
 
-~~Though almost all solutions on Internet like CSDN has only one way - using two heaps, one max heap and one min heap, this is still a problem worth 2+ hours to think carefully about it.
+~~Though almost all solutions on Internet like CSDN has only one way to solve this - using two heaps, one max heap and one min heap, this is still a problem worth 2+ hours to think carefully about it, to be honest.
 
 \textbf{Solution 1 - Array \& List}
 
 ~~Honestly, this is not a correct solution though it got AC on OJ. The complexity is $O(m+n)$ rather than $O(log(m+n))$.
 
-~~ Unsorted array is enough for the problem. Partition is what we usually do in QuickSort, so as to finish the task of finding the median. Partition is of $O(n) runtime$, where inserting to unsorted array only costs $O(1)$. This method will get TLE in OJ.
+~~ Unsorted array is enough for the problem. Partition is what we usually do in QuickSort, so as to finish the task of finding the median. Partition is of $O(n)\ runtime$, where inserting to unsorted array only costs $O(1)$. This method will get TLE in OJ.
 
 \javacode{Pro295_1_1}{Solution 1.1 - Unsorted Array}
 
@@ -9632,7 +9565,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~~~1. Mind those corner cases.(See detailed cases in problem description)
 
-~~~~2. Don't forget to reverse those remaining paths in Stack, /home/test will be in order of test $->$ home in Stack.
+~~~~2. Don't forget to reverse those remaining paths in Stack, /home/test will be in the order of ``test $->$ home'' in Stack.
 
 \javacode{Pro71}{Solution}
 
@@ -9680,7 +9613,7 @@ Below is a solution without reducing 1 to all elements.
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
     Given a non negative integer number num.
-     For every numbers i in the range 0 $<=$ i $<=$ num
+     For every numbers i in the range 0 <= i <= num
       calculate the number of 1's in their binary representation and
        return them as an array.
 
@@ -9765,9 +9698,9 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~I'm following an easy simulation, deal with `A' \& `B' separately, but I think there is space for optimization.
+~~ I'm following an easy simulation, deal with `A' \& `B' separately, but I think there is space for optimization.
 
-~~ Last FREE Easy Problem I have solved.
+~~ Last FREE Easy Problem solved till 3rd, Apr., 2016.
 
 \javacode{Pro299}{Solution}
 
@@ -9786,18 +9719,16 @@ Below is a solution without reducing 1 to all elements.
 
     A peak element is an element that is greater than its neighbors.
 
-    Given an input array where num[i] $<>$ num[i+1],
+    Given an input array where num[i] != num[i+1],
      find a peak element and return its index.
 
     The array may contain multiple peaks,
      in that case return the index to any one of the peaks is fine.
 
-    You may imagine that num[-1] = num[n] = -\infty.
+    You may imagine that num[-1] = num[n] = - infinity(since I cannot type the symbol here)
 
     For example, in array [1, 2, 3, 1], 3 is a peak element
      and your function should return the index number 2.
-
-    click to show spoilers.
 
     Note:
     Your solution should be in logarithmic complexity.
@@ -10105,7 +10036,7 @@ Below is a solution without reducing 1 to all elements.
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
-    Given a range [m, n] where 0 $<=$ m $<=$ n $<=$ 2147483647,
+    Given a range [m, n] where 0 <= m <= n <= 2147483647,
      return the bitwise AND of all numbers in this range, inclusive.
 
     For example, given the range [5, 7], you should return 4.
@@ -10120,7 +10051,7 @@ Below is a solution without reducing 1 to all elements.
 
 \javacode{Pro201_1_1}{Solution 1.1}
 
-~~ Another solution is as below, which is in nature same as previous method.
+~~ Another solution is as below, which is in nature the same as previous method.
 
 \javacode{Pro201_1_2}{Solution 1.2}
 
@@ -10231,7 +10162,7 @@ Below is a solution without reducing 1 to all elements.
     Note:
     (1) You may imagine nums[-1] = nums[n] = 1.
      They are not real therefore you can not burst them.
-    (2) 0 ¡Ü n ¡Ü 500, 0 ¡Ü nums[i] ¡Ü 100
+    (2) 0 <= n <= 500, 0 <= nums[i] <= 100
 
     Example:
 
@@ -10252,7 +10183,9 @@ Below is a solution without reducing 1 to all elements.
 
 ~~The state transition equation is dp[l][r]=nums[l]*nums[m]*nums[r] + dp[l][m] + dp[m][r], l$<$m$<$r;
 
-~~For detailed solution description, see \url{http://bookshadow.com/weblog/2015/11/30/leetcode-burst-balloons/}
+~~For detailed solution description, see
+
+ \url{http://bookshadow.com/weblog/2015/11/30/leetcode-burst-balloons/}
 
 \javacode{Pro312}{Solution}
 
@@ -10302,7 +10235,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~The idea is not so easy to figure out.
+~~ The idea is not so easy to figure out.
 
 ~~ First, we sort the list from smallest to largest.
 

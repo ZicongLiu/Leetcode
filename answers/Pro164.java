@@ -21,7 +21,8 @@ public class Solution {
         
         int interval = (int) Math.ceil((double)(totalMax + 1 - totalMin)
              / (nums.length - 1));
-        int bucketCnt = (int) Math.ceil((double)(totalMax + 1 - totalMin) / interval);
+        int bucketCnt = (int) Math.ceil((double)
+                (totalMax + 1 - totalMin) / interval);
         Bucket[] buckets = new Bucket[bucketCnt];
         for (int i = 0 ; i < buckets.length ; i ++){
             buckets[i] = new Bucket();
