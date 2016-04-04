@@ -11,8 +11,10 @@ public class Solution {
            for (int i = 0 ; i <= s1.length() - k ; i ++){
                for (int j = 0 ; j <= s1.length() - k ; j++){
                    for (int inner = 1 ; inner < k ; inner ++){
-                       dp[k][i][j] |= dp[inner][i][j] && dp[k - inner][i + inner][j + inner];
-                       dp[k][i][j] |= dp[inner][i][j + k - inner] && dp[k - inner][i + inner][j];
+                       dp[k][i][j] |= dp[inner][i][j]
+                           && dp[k - inner][i + inner][j + inner];
+                       dp[k][i][j] |= dp[inner][i][j + k - inner]
+                           && dp[k - inner][i + inner][j];
                        if (dp[k][i][j]){
                            break;
                        }

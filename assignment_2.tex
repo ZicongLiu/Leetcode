@@ -10245,7 +10245,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~~~When we meet nums[i] $<=$ sum, eg: [1,2,10], curSum = 0 at first. 1 $<=$ 0+1, then curSum += 1; then 2 $<=$ 1+1, curSum += 2;
 
-~~~~When nums[i] $>$ sum, eg, curSum=4 \& nums[i]=10 in previous example, now we cannot reach sum more than curSum, we then add curSum+1 to out list to get more conditions for sum. What is the maximum sum we can reach now? The answer is curSum*2+1(curSum+curSum+1).
+~~~~When nums[i] $>$ sum, eg, curSum=4 \& nums[i]=10 in previous example, now we cannot reach sum more than curSum, we then add curSum+1 to out list to get more conditions for sum. What is the maximum sum we can reach now? The answer is curSum*2+1(2*(curSum+1) - 1).
 
 \javacode{Pro330}{Solution}
 
@@ -10500,7 +10500,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution - BIT}
 
-~~ For BIT, we firstly sort and discrete the original array to make array in BIT much shorter. Then we assign each element a index according to its position after sorted, eg: for [5,2,6,1], there will be $1->1, 2->2, 3->5, 4->6$.
+~~ For BIT, we firstly sort and discrete the original array to make array in BIT much shorter. Then we assign each element a index according to its position after sorted, eg: for [5,2,6,1], there will be $1\ ->\ 1, 2\ ->\ 2, 3\ ->\ 5, 4\ ->\ 6$.
 
 ~~ Then it's time for BIT to take effect. We iterate from tail of original array, now sum of discrete[nums[i]] is count of its smaller elements, and we may then update the BIT since we have a new element counting from right.
 
@@ -10596,7 +10596,7 @@ Below is a solution without reducing 1 to all elements.
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
-   You are given a string, \textbf{s}, and a list of words, \textbf{words},
+   You are given a string, `s', and a list of words, `words',
     that are all of the same length.
      Find all starting indices of substring(s) in s
       that is a concatenation of each word in words exactly once
@@ -10680,53 +10680,6 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~REVIEW it!!
-
-~~ Honestly, this is not a difficult DP problem. The state transition equation is simple:
-
-~~ Let dp[i][j] represents match count of first ith letters in S with first jth letters in T.
-
-~~~When s.charAt(i-1) == t.charAt(j-1), then dp[i][j] = dp[i-1][j-1] + dp[i-1][j]; Eg, for 2nd a in rrraa(t is ra), dp equals 3 + 3, where first 3 represents how many `ra' the first `rrra' can produce; where last 3 represents how many can `rrrXa(current a)' get.
-
-~~~While when s.charAt(i-1) != t.charAt(j-1), dp[i][j] = dp[i - 1][j];
-
-\javacode{Pro115}{Solution}
-
-\end{homeworkProblem}
-\newpage
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 115 Distinct Subsequences
-%----------------------------------------------------------------------------------------
-
-\begin{homeworkProblem}
-\title{\textbf{\large 115 Distinct Subsequences}}
-
-
-\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-
-   Given a string S and a string T,
-    count the number of distinct subsequences of T in S.
-
-    A subsequence of a string is a new string
-     which is formed from the original string by deleting some
-      (can be none) of the characters without disturbing
-       the relative positions of the remaining characters.
-        (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
-
-    Here is an example:
-        S = "rabbbit", T = "rabbit"
-
-        Return 3.
-
-    https://leetcode.com/problems/distinct-subsequences/
-
-\end{lstlisting}
-
-\textbf{Solution}
-
-~~REVIEW it!!
-
 ~~ Honestly, this is not a difficult DP problem. The state transition equation is simple:
 
 ~~ Let dp[i][j] represents match count of first ith letters in S with first jth letters in T.
@@ -10767,13 +10720,11 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~REVIEW it!!
-
 ~~Another DP problem involving String issues.
 
 ~~ How to find the state transition equation is a bit difficult but the equation is not difficult to understand. Though there are 3 strings, s1, s2 and s3, len(s1) + len(s2) = len(s3)(otherwise the function must return false), consequently there are only 2 independent variables, so we let boolean dp[i][j] represents if first i digits of s1 interleaved with first j digits of s2 comes up with first i+j digits of s3.
 
-~~ Thus, dp[i][j] = (s1.charAt(i-1) == s3.charAt(i+j-1) \&\& dp[i-1][j]) || (s2.charAt(j-1) == s3.charAt(i+j-1) \&\& dp[i][j-1]);
+~~ Thus, dp[i][j] = (s1.charAt(i-1) == s3.charAt(i+j-1) \&\& dp[i-1][j]) $\vert\vert$ (s2.charAt(j-1) == s3.charAt(i+j-1) \&\& dp[i][j-1]);
 
 \javacode{Pro97}{Solution}
 
@@ -10802,28 +10753,29 @@ Below is a solution without reducing 1 to all elements.
 
     Example 1:
         Given x = [2, 1, 1, 2],
-        $©°©¤©¤©¤©´
-        ©¦   ©¦
-        ©¸©¤©¤©¤©à©¤©¤>
-            ©¦$
+         ---
+        |   |
+         ---+-->
+            |
 
         Return true (self crossing)
 
     Example 2:
         Given x = [1, 2, 3, 4],
-        $©°©¤©¤©¤©¤©¤©¤©´
-        ©¦      ©¦
-        ©¦
-        ©¦
-        ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤>$
+         ------
+        |      |
+        |
+        |
+         ----------->$
 
         Return false (not self crossing)
 
     Example 3:
         Given x = [1, 1, 1, 1],
-       $ ©°©¤©¤©¤©´
-        ©¦   ©¦
-        ©¸©¤©¤©¤©à>$
+         ---
+        |   |
+         ---+->
+            |
 
         Return true (self crossing)
 
@@ -10841,32 +10793,32 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ there are 3 situation where 2 lines form a cross with each other,
 
-!!!!!!!!!!!!!!!!!!NOT FINISHED, how to deal with such issue
-$~\\
+
+~\\
 ~~1.
 ~~~~     x(1)
-~~~~    ©°©¤©¤©¤©´
-~~~~x(2)©¦   ©¦x(0)
-~~~~    ©¸©¤©¤©¤©à©¤©¤>
-~~~~    x(3)©¦
+~~~~     ---
+~~~~x(2)|   |x(0)
+~~~~     ---+--$>$
+~~~~    x(3)|
 ~\\
 ~\\
 ~~~~      x(1)
-~~~~    ©°©¤©¤©¤©¤©¤©¤©´
-~~~~    ©¦      ©¦x(0)
-~~~~x(2)©¦      |
-~~~~    ©¦      ©¦x(4)
-~~~~    ©¸©¤©¤©¤©¤©¤©¤©¦
+~~~~     ------
+~~~~    |      |x(0)
+~~~~x(2)|      \^
+~~~~    |      |x(4)
+~~~~     ------|
 ~~~~      x(3)
 ~\\
 ~\\
 ~~~~      x(1)
-~~~~    ©°©¤©¤©¤©¤©¤©¤©´
-~~~~    ©¦      ©¦x(0)
-~~~~x(2)©¦     <©¦©¤©¤©¤©¤©¦
-~~~~    ©¦       x(5)©¦x(4)
-~~~~    ©¸©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¦
-~~~~        x(3)$
+~~~~     ------
+~~~~    |      |x(0)
+~~~~x(2)|     $<$|----|
+~~~~    |       x(5)|x(4)
+~~~~     -----------|
+~~~~        x(3)
 
 ~~ Where each conditions can be derived by given circumstances. See code in listing.
 
@@ -10958,8 +10910,8 @@ $~\\
       where Li and Ri are the x coordinates of
        the left and right edge of the ith building, respectively,
         and Hi is its height.
-         It is guaranteed that 0 $<=$ Li, Ri $<=$ INT_MAX,
-          0 $<$ Hi $<=$ INT\_MAX, and Ri - Li $>$ 0.
+         It is guaranteed that 0 <= Li, Ri <= INT_MAX,
+          0 < Hi <= INT_MAX, and Ri - Li > 0.
            You may assume all buildings are perfect rectangles
             grounded on an absolutely flat surface at height 0.
 
@@ -11140,7 +11092,7 @@ $~\\
 
 \begin{enumerate}
     \item Reverse string s as rev\_s
-    \item Append rev\_s to tail of s, namely form {rev\_s}\#s
+    \item Append rev\_s to tail of s, namely form s\#{rev\_s}
     \item Apply KMP to new string, get the maximum common length of prefix and suffix, such segment of string is actually palindrome(think of why.)
     \item Split rev\_s to get s.length() - common\_length substring, attach it to head of string s
 \end{enumerate}

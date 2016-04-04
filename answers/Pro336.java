@@ -23,7 +23,8 @@ class Solution{
                     }
                 }
                 if (isPalindrome(right)){
-                    String leftRev = new StringBuilder(left).reverse().toString();
+                    String leftRev
+                         = new StringBuilder(left).reverse().toString();
                     if (wordIdxs.containsKey(leftRev) && wordIdxs.get(leftRev)
                      != curIdx && right.length() != 0){
                         List<Integer> pair = new ArrayList<Integer>();

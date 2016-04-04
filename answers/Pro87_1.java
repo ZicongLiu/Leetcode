@@ -31,7 +31,7 @@ public class Solution {
             String left2Rev = s2.substring(0, s1.length() - i),
                    right2Rev = s2.substring(s1.length() - i);
             result |= (isScramble(left1, left2) && isScramble(right1, right2))
-                || (isScramble(left1, right2Rev) && isScramble(right1, left2Rev));
+             || (isScramble(left1, right2Rev) && isScramble(right1, left2Rev));
             if (result == true){
                 return result;
             }

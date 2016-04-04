@@ -8,7 +8,7 @@
  * }
  */
 public class Solution {
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+    public List<Interval> insert(List<Interval> intervals,Interval newInterval){
         List<Interval> result = new ArrayList<Interval>();
         if (intervals.size() == 0){
             result.add(newInterval);
