@@ -10793,32 +10793,34 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ there are 3 situation where 2 lines form a cross with each other,
 
+\begin{lstlisting}[language=tex,stepnumber=100, frame=none]
 
-~\\
-~~1.
-~~~~     x(1)
-~~~~     ---
-~~~~x(2)|   |x(0)
-~~~~     ---+--$>$
-~~~~    x(3)|
-~\\
-~\\
-~~~~      x(1)
-~~~~     ------
-~~~~    |      |x(0)
-~~~~x(2)|      \^
-~~~~    |      |x(4)
-~~~~     ------|
-~~~~      x(3)
-~\\
-~\\
-~~~~      x(1)
-~~~~     ------
-~~~~    |      |x(0)
-~~~~x(2)|     $<$|----|
-~~~~    |       x(5)|x(4)
-~~~~     -----------|
-~~~~        x(3)
+        1.
+                 x(1)
+                 ---
+            x(2)|   |x(0)
+                 ---+-->
+                x(3)|
+
+        2.
+                  x(1)
+                 ------
+                |      |x(0)
+            x(2)|      ^
+                |      |x(4)
+                 ------|
+                  x(3)
+
+        3.
+                  x(1)
+                 ------
+                |      |x(0)
+            x(2)|     <|---|
+                |      x(5)|x(4)
+                -----------
+                    x(3)
+
+\end{lstlisting}
 
 ~~ Where each conditions can be derived by given circumstances. See code in listing.
 
