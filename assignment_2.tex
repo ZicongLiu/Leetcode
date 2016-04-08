@@ -6006,6 +6006,8 @@ Below is a solution without reducing 1 to all elements.
 ~~A greedy or DP problem. The maximum steps we can go on is Math.max(curMax, nums[idx]), don't forget to reduce curMax by 1 simulating every step we proceed.
 
 \javacode{Pro55}{Solution}
+~~A more concise version. Do not need to deduct 1, only need to check if we can reach the first elements finally.
+\javacode{Pro55_2}{Solution1.1}
 
 \end{homeworkProblem}
 \newpage
@@ -6044,6 +6046,8 @@ Below is a solution without reducing 1 to all elements.
 \textbf{Solution}
 
 ~~Still greedy, but needs some time to figure out the correctness....(Honestly, I don't think this is a complete greedy problem, since the solution is not that greedy. It's more like a DP problem.)
+
+~~Let's say the range of the current jump is [curBegin, lastMax], curMax is the farthest point that all points in [curBegin, lastMax] can reach. Once the current point reaches lastMax, then trigger another jump, and set the new lastMax with curMax. (But why extending with max will lead to correct solution?)
 
 \javacode{Pro45}{Solution}
 
@@ -8720,7 +8724,9 @@ Below is a solution without reducing 1 to all elements.
 ~~Knapsack problem. Simple but I'm confused! 
 
 \javacode{Pro322}{Solution}
-
+~~We can also switch the outer and inner for loop, then the code looks almost the same as Pro279.
+\javacode{Pro322_2}{Solution1.2}
+ 
 \end{homeworkProblem}
 \newpage
 
@@ -10241,6 +10247,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~~~When nums[i] $>$ sum, eg, curSum=4 \& nums[i]=10 in previous example, now we cannot reach sum more than curSum, we then add curSum+1 to out list to get more conditions for sum. What is the maximum sum we can reach now? The answer is curSum*2+1(2*(curSum+1) - 1).
 
+~~~~Note that a common pitfall is that sum may exceed max int, so we use long instead of int. (This is why for test case [1,2,31,33], 2147483647, I got wrong at first) 
 \javacode{Pro330}{Solution}
 
 \end{homeworkProblem}
