@@ -993,6 +993,43 @@ The main idea of my solution is to firstly use dummy node to avoid talking about
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 342 Power of Four
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 342 Power of Four}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
+
+    Example:
+    Given num = 16, return true. Given num = 5, return false.
+
+    Follow up: Could you solve it without loops/recursion?
+
+    https://leetcode.com/problems/power-of-four/
+
+\end{lstlisting}
+
+\textbf{Solution 1}
+
+~~First identify whether it is power of 2(simply using n\&(n-1)==0), then if it is , the form of the number must be like 10....0, check whether there are even number of 0 behind the heading 1.
+
+~~ However, I'm still using a loop.
+
+\javacode{Pro342_1}{Solution 1}
+
+\textbf{Solution 2}
+
+~~ Still, check if it is power of 2. Then use 0x55555555(1010101010101010101010101010101 in binary) to check if the single 1 only appears at odd position.
+
+\javacode{Pro342_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 191 Number of 1 Bits
 %----------------------------------------------------------------------------------------
 
@@ -5432,6 +5469,48 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 341 Flatten Nested List Iterator
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 341 Flatten Nested List Iterator}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a nested list of integers, implement an iterator to flatten it.
+
+    Each element is either an integer, or a list --
+     whose elements may also be integers or other lists.
+
+    Example 1:
+    Given the list [[1,1],2,[1,1]],
+
+    By calling next repeatedly until hasNext returns false,
+    the order of elements returned by next should be: [1,1,2,1,1].
+
+    Example 2:
+    Given the list [1,[4,[6]]],
+
+    By calling next repeatedly until hasNext returns false,
+     the order of elements returned by next should be: [1,4,6].
+
+    https://leetcode.com/problems/flatten-nested-list-iterator/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~Seemingly I list 2 solutions here, they are in nature similar, the difference just lies in when we flatten the list(to flatten the whole list or flatten it every time we pop an element out of the stack.)
+
+\javacode{Pro341_1_1}{Solution - Flatten it using Stack}
+
+\javacode{Pro341_1_2}{Solution - Flatten the whole list at first sight}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 50 Pow(x, n)
 %----------------------------------------------------------------------------------------
 
@@ -6090,7 +6169,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~Still greedy, but needs some time to figure out the correctness....(Honestly, I don't think this is a complete greedy problem, since the solution is not that greedy. It's more like a DP problem.)
 
-~~Let's say the range of the current jump is [curBegin, lastMax], curMax is the farthest point that all points in [curBegin, lastMax] can reach. Once the current point reaches lastMax, then trigger another jump, and set the new lastMax with curMax. 
+~~Let's say the range of the current jump is [curBegin, lastMax], curMax is the farthest point that all points in [curBegin, lastMax] can reach. Once the current point reaches lastMax, then trigger another jump, and set the new lastMax with curMax.
 
 \javacode{Pro45}{Solution}
 
