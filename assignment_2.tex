@@ -9406,9 +9406,9 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 2}
 
-~~Solution 2 is tactical and can avoid using extra $O(n) space$. Let's consider the non-descending condition - [1,2,3,4,5] OR [1,2,3,3,4], when the sequence is ascending, we don't need to worry about the candy-giving thing, since the result is obvious after one pass - [1,2,3,4,5] \& [1,2,3,1,2]. Now consider something more complicated - [1,5,4,3,2], still we give $kid_0$(with rating of 1) 1 candy, $kid_1$ 2 candies temporarily, then we meet $kid_2$ with 4 ratings, give him 1(we'll know why afterwards), and now we are in a ascending sequence with length of 2 by now.
+~~Solution 2 is tactical and can avoid using extra $O(n) space$. Let's consider the non-descending condition - [1,2,3,4,5] OR [1,2,3,3,4], when the sequence is ascending, we don't need to worry about the candy-giving thing, since the result is obvious after one pass - [1,2,3,4,5] \& [1,2,3,1,2]. Now consider something more complicated - [1,5,4,3,2], still we give $kid_0$(with rating of 1) 1 candy, $kid_1$ 2 candies temporarily, then we meet $kid_2$ with 4 ratings, give him 1(we'll know why afterwards), and now we are in a descending sequence with length of 2 by now.
 
-~~Then the important part. We meet $kid_3$ with 3 ratings, which is still in the ascending sequence, and that's when we know we have underestimated $kid_1$, so we give him an extra candy, namely total++; don't forget $kid_3$, we give him 2 candies(here we are balancing $kid_2$ and $kid_3$, in fact $kid_2$ is the one who should get 2 candies by now, not $kid_3$, since we are calculating the total amount of candies, so it doesn't matter who get the candy.) Similarly, when $kid_4$ arrives, we give him(or $kid_2$, to be more precious) 3 candies and compensate $kid_1$ again.
+~~Then the important part. We meet $kid_3$ with 3 ratings, which is still in the descending sequence, and that's when we know we have underestimated $kid_1$, so we give him an extra candy, namely total++; don't forget $kid_3$, we give him 2 candies(here we are balancing $kid_2$ and $kid_3$, in fact $kid_2$ is the one who should get 2 candies by now, not $kid_3$, since we are calculating the total amount of candies, so it doesn't matter who get the candy.) Similarly, when $kid_4$ arrives, we give him(or $kid_2$, to be more precious) 3 candies and compensate $kid_1$ again.
 
 \javacode{Pro135_2}{Solution 2}
 
@@ -11727,7 +11727,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 1}
 
-~~ As for a binary search problem, I can't tell this should be classified as Medium difficulty. Using division instead of multiplication is a trick to prevent overflow. 
+~~ As for a binary search problem, I can't tell this should be classified as Medium difficulty. Using division instead of multiplication is a trick to prevent overflow.
 
 \javacode{Pro367_1}{Solution 1 - Binary Search}
 
@@ -11809,6 +11809,321 @@ Below is a solution without reducing 1 to all elements.
 \javacode{pro376_2_2}{Solution 2 - Math}
 
 
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 387 First Unique Character in a String
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 387 First Unique Character in a String}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a string, find the first non-repeating character in it and return it's index.
+     If it doesn't exist, return -1.
+
+    Examples:
+
+    s = "leetcode"
+    return 0.
+
+    s = "loveleetcode",
+    return 2.
+    Note: You may assume the string contain only lowercase letters.
+
+    https://leetcode.com/problems/first-unique-character-in-a-string/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A simple problem, array counting its count and index is enough.
+
+\javacode{Pro387}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 365 Water and Jug Problem
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 365 Water and Jug Problem}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    You are given two jugs with capacities x and y litres.
+     There is an infinite amount of water supply available.
+      You need to determine whether it is possible to measure
+       exactly z litres using these two jugs.
+
+    If z liters of water is measurable,
+     you must have z liters of water contained within one or both buckets
+      by the end.
+
+    Operations allowed:
+
+    Fill any of the jugs completely with water.
+    Empty any of the jugs.
+    Pour water from one jug into another till the other jug is
+     completely full or the first jug itself is empty.
+    Example 1: (From the famous "Die Hard" example)
+
+    Input: x = 3, y = 5, z = 4
+    Output: True
+    Example 2:
+
+    Input: x = 2, y = 6, z = 5
+    Output: False
+
+    https://leetcode.com/problems/water-and-jug-problem/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ If you know the solution, the problem is not so difficult. Just check if z is divisible by gcd(x,y).
+
+~~ BUT! Mention so may edge cases, like x == 0, y == 0, z == 0, and x + y < z(For example, for 1,2,5, though 1+2+2=5, it cannot be achieved)
+
+\javacode{Pro365}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 372 Super Pow
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 372 Super Pow}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Your task is to calculate ab mod 1337 where a is a positive integer
+     and b is an extremely large positive integer given in the form of an array.
+
+    Example1:
+
+    a = 2
+    b = [3]
+
+    Result: 8
+    Example2:
+
+    a = 2
+    b = [1,0]
+
+    Result: 1024
+
+    https://leetcode.com/problems/super-pow/
+
+\end{lstlisting}
+
+\textbf{Solution 1}
+
+~~ Fast Exponentiation is one solution, just aware of using high-precision solution to deal with the div 2 calculation. And, remember to mod 1337 everywhere.
+
+\javacode{Pro372_1}{Solution 1 - Fast Exponentiation}
+
+\textbf{Solution 2}
+
+~~ I didn't get the solution... Copy the solution here, for future inspiration.
+
+~~  The main idea is cashed on the repeated pattern of the remainder of $a^b$.
+
+~~  As long as we know the length of the pattern m, we just have to find an index point of this pattern based on b mod m.
+
+~~~  In addition, if a $>$ 1337, we can let a = a mod 1337.
+
+~~~  Because if we let a = (1337x + c) where c = a mod 1337,
+
+~~~  (1337x + c)(1337x + c)(1337x + c)...(1337x + c) mod 1337 == ccc...c mod 1337.
+
+~~~~ It iterates at most 1337 times to find the circle. And find the remainder to the loop size. And then look up in the history to find the final answer.
+
+\javacode{Pro372_2}{Solution 2 - the Remainder Repeat Pattern}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 386 Lexicographical Numbers
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 386 Lexicographical Numbers}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given an integer n, return 1 - n in lexicographical order.
+
+    For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
+
+    Please optimize your algorithm to use less time and space.
+     The input size may be as large as 5,000,000.
+
+    https://leetcode.com/problems/lexicographical-numbers/
+
+\end{lstlisting}
+
+\textbf{Solution 1}
+
+~~ Just a dfs problem, not difficult at all. However, optimization on the way.
+
+\javacode{Pro386_1}{Solution 1 - DFS}
+
+\textbf{Solution 2}
+
+~~ To be continued... Needs optimization.
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 347 Top K Frequent Elements
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 347 Top K Frequent Elements}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a non-empty array of integers, return the k most frequent elements.
+
+    For example,
+    Given [1,1,1,2,2,3] and k = 2, return [1,2].
+
+    Note:
+    You may assume k is always valid, 1 <= k <= number of unique elements.
+    Your algorithm's time complexity must be better than O(n log n),
+     where n is the array's size.
+
+    https://leetcode.com/problems/top-k-frequent-elements/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ For $O(n logn)$, heap sort, merge sort and quick sort come into mind. When PriorityQueue provide us with built-in heap sort, we use it to solve the problem.
+
+\javacode{Pro347}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 388 Longest Absolute File Path
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 388 Longest Absolute File Path}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Suppose we abstract our file system by a string in the following manner:
+
+    The string "dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext" represents:
+
+    dir
+        subdir1
+        subdir2
+            file.ext
+    The directory dir contains an empty sub-directory subdir1
+     and a sub-directory subdir2 containing a file file.ext.
+
+    The string
+     "dir\n\tsubdir1\n\t\tfile1.ext\n\t
+     \tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext"
+      represents:
+
+    dir
+        subdir1
+            file1.ext
+            subsubdir1
+        subdir2
+            subsubdir2
+                file2.ext
+    The directory dir contains two sub-directories subdir1 and subdir2.
+     subdir1 contains a file file1.ext and
+      an empty second-level sub-directory subsubdir1.
+       subdir2 contains a second-level sub-directory subsubdir2 containing
+        a file file2.ext.
+
+    We are interested in finding the longest (number of characters) absolute path
+     to a file within our file system.
+      For example, in the second example above,
+       the longest absolute path is "dir/subdir2/subsubdir2/file2.ext",
+        and its length is 32 (not including the double quotes).
+
+    Given a string representing the file system in the above format,
+     return the length of the longest absolute path to file
+      in the abstracted file system. If there is no file in the system, return 0.
+
+    Note:
+    The name of a file contains at least a . and an extension.
+    The name of a directory or sub-directory will not contain a ..
+    Time complexity required: O(n) where n is the size of the input string.
+
+    Notice that a/aa/aaa/file1.txt is not the longest file path,
+     if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
+
+    https://leetcode.com/problems/longest-absolute-file-path/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Used number of `$\backslash$t' as array index, a 1D array is enough to store the value since the structure is like a tree.
+
+\javacode{Pro388}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 354 Russian Doll Envelopes
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 354 Russian Doll Envelopes}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    You have a number of envelopes with widths and heights given as
+     a pair of integers (w, h).
+      One envelope can fit into another if and only if
+       both the width and height of one envelope
+        is greater than the width and height of the other envelope.
+
+    What is the maximum number of envelopes can you Russian doll?
+     (put one inside other)
+
+    Example:
+    Given envelopes = [[5,4],[6,4],[6,7],[2,3]],
+     the maximum number of envelopes you can Russian doll is
+      3 ([2,3] => [5,4] => [6,7]).
+
+    https://leetcode.com/problems/russian-doll-envelopes/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A very interesting problem. First, sort the envelopes according to no matter width or height, let's say width, when 2 envelopes are of the same width, put the one with larger height in the front. Then the problem is converted to `Longest Increasing Subsequence'(and now we know why we put larger ones in front, since envelopes with same width cannot enclose each other, we use the sequence of larger $->$ smaller to avoid enclosing envelopes with same width). For `Longest Increasing Subsequence', there is a $O(n^2)$ DP solution and $O(n logn)$ Binary Search solution.
+
+\javacode{Pro354}{Solution}
 
 \end{homeworkProblem}
 \newpage
