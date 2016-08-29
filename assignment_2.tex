@@ -9534,8 +9534,6 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution 1 - Array \& List}
 
-~~Honestly, this is not a correct solution though it got AC on OJ. The complexity is $O(m+n)$ rather than $O(log(m+n))$.
-
 ~~ Unsorted array is enough for the problem. Partition is what we usually do in QuickSort, so as to finish the task of finding the median. Partition is of $O(n)\ runtime$, where inserting to unsorted array only costs $O(1)$. This method will get TLE in OJ.
 
 \javacode{Pro295_1_1}{Solution 1.1 - Unsorted Array}
@@ -9723,7 +9721,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~An easy backtracking problem, when remaining left parentheses number equals right number, we must pick left one so that there won't be illegal pairs; when left less than right, we can pick either left or right parentheses.
+~~There is a cycle within all numbers, [[[[0],1],10,11],100,101,110,111], eg, for 0,1,10,11, the 100,101,110,111 is just adding 1 in front of them.
 
 \javacode{Pro338_1_1}{Solution 1.1}
 
