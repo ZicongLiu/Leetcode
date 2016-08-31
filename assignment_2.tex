@@ -5982,6 +5982,51 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 167 Two Sum II - Input array is sorted
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 167 Two Sum II - Input array is sorted}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given an array of integers that is already sorted in ascending order,
+     find two numbers such that they add up to a specific target number.
+
+    The function twoSum should return indices of the two numbers
+     such that they add up to the target, where index1 must be less than index2.
+      Please note that your returned answers (both index1 and index2) are not 0-based.
+
+    You may assume that each input would have exactly one solution.
+
+    Input: numbers={2, 7, 11, 15}, target=9
+    Output: index1=1, index2=2
+
+    https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
+\end{lstlisting}
+
+\textbf{Solution - Two Pointers}
+
+~~ Continue with solution discussion in preceding problem. Another way of solving the problem is to use 2-pointers. Note that the array should be sorted, which may lead to larger complexity among unsorted array. 2 pointers starts respectively from the beginning and ending of array, and when current sum is larger than target, move ending pointer forward, while on the contrast moving beginning pointer backward until they meet.
+
+~~ Moreover, a trick for not getting TLE is to skip duplicate elements. Imagine an sample input of [0,0,...,0,4,9,...,9] with target=4. For pointers, we can feel free to use while loop to skip duplicates to prevent from costing too much time. If the target is 0, then it will be obtained by both idx1 and idx2, not influenced by a skipping process of a single idx pointer.
+
+\javacode{Pro167_1}{Solution}
+
+
+\textbf{Solution - Binary Search}
+
+~~ Another way is to make use of binary search. Iterate elements in array(until the element is larger or equals to target / 2, think of it), and use binary search to find (target - cur) in array backwards. However the complexity may be a bit larger($O(n logn)$) than 2-pointers method.
+
+\javacode{Pro167_2}{Solution}
+
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 15 3Sum
 %----------------------------------------------------------------------------------------
 
@@ -8451,6 +8496,43 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 368 Largest Divisible Subset
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 368 Largest Divisible Subset}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a set of distinct positive integers,
+     find the largest subset such that every pair (Si, Sj) of elements
+      in this subset satisfies: Si % Sj = 0 or Sj % Si = 0.
+    If there are multiple solutions, return any subset is fine.
+    Example 1:
+    nums: [1,2,3]
+
+    Result: [1,2] (of course, [1,3] will also be ok)
+
+    Example 2:
+    nums: [1,2,4,8]
+
+    Result: [1,2,4,8]
+
+    https://leetcode.com/problems/largest-divisible-subset/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Follow the similar solution for `Longest Increasing Subsequence'. $O(n^2)$ complexity. Can probably be optimized a bit to track both previous element and max length of path using array instead of creating arrays of Set/List.
+
+\javacode{Pro368}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 208 Implement Trie (Prefix Tree)
 %----------------------------------------------------------------------------------------
 
@@ -10682,7 +10764,7 @@ Below is a solution without reducing 1 to all elements.
         The three ranges are : [0, 0], [2, 2], [0, 2]
          and their respective sums are: -2, -1, 2.
 
-    https://leetcode.com/problems/count-of-range-sum/    
+    https://leetcode.com/problems/count-of-range-sum/
 
 \end{lstlisting}
 
@@ -12213,6 +12295,119 @@ Below is a solution without reducing 1 to all elements.
 ~~ Can you still remember `Single Number' series? Can you find it similar between that series and this one?
 
 \javacode{Pro389_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 382 Linked List Random Node
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 382 Linked List Random Node}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a singly linked list, return a random node's value from the linked list.
+     Each node must have the same probability of being chosen.
+
+    Follow up:
+    What if the linked list is extremely large and its length is unknown to you?
+     Could you solve this efficiently without using extra space?
+
+    Example:
+        // Init a singly linked list [1,2,3].
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        Solution solution = new Solution(head);
+
+        // getRandom() should return either 1, 2, or 3 randomly.
+        Each element should have equal probability of returning.
+        solution.getRandom();
+
+    https://leetcode.com/problems/linked-list-random-node/
+
+\end{lstlisting}
+
+\textbf{Solution - Regular and Follow-up}
+
+~~ For this problem, the solution at first sight is to calculate the length of data stream(number of elements inside stream) and get random number based on that. So the code seems like this:
+
+\javacode{Pro382_1}{Solution 1}
+
+~~\textbf{HOWEVER!} When the stream is extremely large so that we are not able to put it into memory, we need to refer to some other solutions. Here is the option, the Reservoir Sampling.\\
+
+~~ Here comes the references, for Chinese version, visit
+
+~~~~ \url{http://blog.jobbole.com/42550/}
+
+~~ And for English version, visit
+
+~~~~ \url{http://blog.cloudera.com/blog/2013/04/hadoop-stratified-randosampling-algorithm/}\\
+
+~~ The main thought is to preserve only one number, e.g.: when 1,2,3 comes from stream:
+
+~~~~When only 1 comes, it is definitely 100\% picked;
+
+~~~~1, 2 come, both have 1/2=50\% probability to be picked out, in other words, the number has 1/2 probability to be changed from 1 to 2;
+
+~~~~Next the 3. We give it 1/3 probability to be chosen to substitute whatever we have stored, 1 or 2. Then how about the chance for 1 and 2 to be replaced? 2/3(not substituted by 3)*1/2(chosen at previous step)
+
+~~~~....
+
+~~~~ For controlling the chance to 1/n, we use $ n == new Random().nextInt(n + 1)$
+
+\javacode{Pro382_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 363 Max Sum of Rectangle No Larger Than K
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 363 Max Sum of Rectangle No Larger Than K}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a non-empty 2D matrix matrix and an integer k,
+     find the max sum of a rectangle in the matrix
+      such that its sum is no larger than k.
+
+    Example:
+    Given matrix = [
+      [1,  0, 1],
+      [0, -2, 3]
+    ]
+    k = 2
+
+    The answer is 2.
+     Because the sum of rectangle [[0, 1], [-2, 3]] is 2
+      and 2 is the max number no larger than k (k = 2).
+
+    Note:
+    The rectangle inside the matrix must have an area > 0.
+    What if the number of rows is much larger than the number of columns?
+
+    https://leetcode.com/problems/max-sum-of-sub-matrix-no-larger-than-k/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Though it's a bit difficult, I think it is interesting and worth thinking. The solution makes use of TreeSet to find sum in range.
+
+~~ First for simplification, we think of the 1D solution. It's not that difficult. DP tells us that when referring to sum[i to j], what we only need is sum[j] - sum[i - 1](remember to check boundary). Then, we need TreeSet(BST, to be more specific) to store each sum, and when a new sum comes, compare it with older sums to satisfy sum[curIdx] - sum[formerIdx] $<=$ k, namely sum[curIdx] = treeSet.floor(sum[formerIdx] + k).
+
+~~ As for the 2D part, it's still in DP vision. Remember what we have done in Problem 85 `Maximal Rectangle'? We just use similar thoughts with that problem and what we used in this problem to get sums for each column based on their row index. Then, apply the 1D solution on each row.
+
+~~ A thing is that the test cases are special, they match the 2nd Note in description that the number of rows is much larger than the number of columns? That's why you can find in the solution below that the calculation process seems a bit weird while the code commented seems more normal.(The `normal' code costs 800ms to solve a case when `weird' one is solving the same in 100ms). Honestly, I think that's what shouldn't be happening.
+
+\javacode{Pro363}{Solution}
 
 \end{homeworkProblem}
 \newpage
