@@ -12365,6 +12365,50 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 352 Data Stream as Disjoint Intervals
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 352 Data Stream as Disjoint Intervals}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a data stream input of non-negative integers a1, a2, ..., an, ...,
+     summarize the numbers seen so far as a list of disjoint intervals.
+     
+    For example, suppose the integers from the data stream are 1, 3, 7, 2, 6, ...,
+     then the summary will be:
+    [1, 1]
+    [1, 1], [3, 3]
+    [1, 1], [3, 3], [7, 7]
+    [1, 3], [7, 7]
+    [1, 3], [6, 7]
+    
+    Follow up:
+    What if there are lots of merges and the number of disjoint intervals
+     are small compared to the data stream's size?
+
+    https://leetcode.com/problems/data-stream-as-disjoint-intervals/
+
+\end{lstlisting}
+
+\textbf{Solution - At first sight}
+
+~~Use binary search to find the correct insertion position, then do the insertion or merge(there are conditions when number already exists, can be merged into two Intervals, can be merged into one side or create a new Interval(maybe at the very beginning, in the middle or in the end), which forms the difficulty of the problem).
+
+\javacode{Pro352_1}{Solution 1}
+
+\textbf{Solution - Follow-up}
+
+~~To be continued...
+
+\javacode{Pro352_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 363 Max Sum of Rectangle No Larger Than K
 %----------------------------------------------------------------------------------------
 
@@ -12408,6 +12452,51 @@ Below is a solution without reducing 1 to all elements.
 ~~ A thing is that the test cases are special, they match the 2nd Note in description that the number of rows is much larger than the number of columns? That's why you can find in the solution below that the calculation process seems a bit weird while the code commented seems more normal.(The `normal' code costs 800ms to solve a case when `weird' one is solving the same in 100ms). Honestly, I think that's what shouldn't be happening.
 
 \javacode{Pro363}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 384 Shuffle an Array
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 384 Shuffle an Array}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    Shuffle a set of numbers without duplicates.
+    
+    Example:
+    // Init an array with set 1, 2, and 3.
+    int[] nums = {1,2,3};
+    Solution solution = new Solution(nums);
+
+    // Shuffle the array [1,2,3] and return its result.
+     Any permutation of [1,2,3] must equally likely to be returned.
+    solution.shuffle();
+
+    // Resets the array back to its original configuration [1,2,3].
+    solution.reset();
+
+    // Returns the random shuffling of array [1,2,3].
+    solution.shuffle();
+
+    https://leetcode.com/problems/shuffle-an-array/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Using ``Knuth Shuffle''(or to be more specific, the Fisher–Yates shuffle since they are the real ones who invent this). 
+
+~~ For reference: \url{https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle}
+
+~~The thought is simple, for number at index i, generate random integer between [0,i](using rand.nextInt()), and swap numbers at index i and random number.
+
+~~ Note that this kind of shuffle is not in a uniform probability distribution and making it evenly spread is not difficult, just change the [0,i] into [0,len].
+
+\javacode{Pro384}{Solution}
 
 \end{homeworkProblem}
 \newpage
