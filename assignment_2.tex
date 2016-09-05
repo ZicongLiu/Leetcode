@@ -12624,5 +12624,155 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 385 Mini Parser
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 385 Mini Parser}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a nested list of integers represented as a string,
+     implement a parser to deserialize it.
+    Each element is either an integer, or a list
+     -- whose elements may also be integers or other lists.
+
+    Note: You may assume that the string is well-formed:
+        String is non-empty.
+        String does not contain white spaces.
+        String contains only digits 0-9, [, - ,, ].
+
+    Example 1:
+    Given s = "324",
+
+    You should return a NestedInteger object which contains a single integer 324.
+
+    Example 2:
+    Given s = "[123,[456,[789]]]",
+
+    Return a NestedInteger object containing a nested list with 2 elements:
+
+    1. An integer containing value 123.
+    2. A nested list containing two elements:
+        i.  An integer containing value 456.
+        ii. A nested list with one element:
+             a. An integer containing value 789.
+
+    https://leetcode.com/problems/mini-parser/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A typical recursive/stack problem, however I was struggling with it for a long time(Actually, I'm still struggling). The train of thought is not difficult, just split the string, use a counter to check whether the brackets are in pairs, if yes, then the comma `,' shall be the splitter.
+
+~~ Two kinds of solutions are listed as below, one recursive and one iterative using stack.
+
+\javacode{Pro385_1}{Solution - Recursion}
+
+\javacode{Pro385_2}{Solution - Stack}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 391 Perfect Rectangle
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 391 Perfect Rectangle}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given N axis-aligned rectangles where N > 0,
+     determine if they all together form an exact cover of a rectangular region.
+    Each rectangle is represented as a bottom-left point and a top-right point.
+     For example, a unit square is represented as [1,1,2,2].
+      (coordinate of bottom-left point is (1, 1) and top-right point is (2, 2)).
+
+    Example 1:
+    rectangles = [
+      [1,1,3,3],
+      [3,1,4,2],
+      [3,2,4,4],
+      [1,3,2,4],
+      [2,3,3,4]
+    ]
+
+    Return true. All 5 rectangles together
+     form an exact cover of a rectangular region.
+
+
+
+    Example 2:
+    rectangles = [
+      [1,1,2,3],
+      [1,3,2,4],
+      [3,1,4,2],
+      [3,2,4,4]
+    ]
+
+    Return false. Because there is a gap between the two rectangular regions.
+
+
+
+    Example 3:
+    rectangles = [
+      [1,1,3,3],
+      [3,1,4,2],
+      [1,3,2,4],
+      [3,2,4,4]
+    ]
+
+    Return false. Because there is a gap in the top center.
+
+
+
+    Example 4:
+    rectangles = [
+      [1,1,3,3],
+      [3,1,4,2],
+      [1,3,2,4],
+      [2,2,4,4]
+    ]
+
+    Return false. Because two of the rectangles overlap with each other.
+
+    https://leetcode.com/problems/mini-parser/
+
+\end{lstlisting}
+
+~~ First let me add the demonstration figures for a better visualization.
+
+~~\includegraphics[width=0.2\columnwidth]{figures/391_perfect_rectangle_1}
+~~\includegraphics[width=0.2\columnwidth]{figures/391_perfect_rectangle_2}
+~~\includegraphics[width=0.2\columnwidth]{figures/391_perfect_rectangle_3}
+
+\textbf{Solution - Sweep line}
+
+~~ First solution makes use of a standard geometric search algorithm - sweep line. Basically sort blocks by x-axis $->$ put or remove y-axis values into or from TreeSet for range search $->$ find the overlaps. There are small tricks for better performance like bit manipulation. Screenshot of detailed description of algorithm is as below.
+
+~~\includegraphics[width=0.75\columnwidth]{figures/391_perfect_rectangle_4}
+
+\javacode{Pro391_1}{Solution - Sweep line}
+
+\textbf{Solution - Tricks}
+
+~~\includegraphics[width=0.75\columnwidth]{figures/391_perfect_rectangle_5}
+
+~~\\
+
+~~ This solution description is copied from the hottest topic in Discuss forum for this problem. Actually, there is an easier trick which can solve the problem. There are blue, green and red dots inside graph, an interesting fact is, if they want to form a perfect rectangle, they should follow 2 rules: 1. the total area should be exactly the same as $(max_y - min_y)*(max_x - min_x)$; 2. \textbf{There are four and only four corner points which appears once}(namely the blue points). 
+
+~~ So we just add every corner points of each rectangle into a set, if it exists, remove it(to remove those points in pairs). Finally, we check 1. the total area; 2. whether the size points remaining is exactly four and are the min and max points.
+
+\javacode{Pro391_2}{Solution - tricks}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 
 \end{document}
