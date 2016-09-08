@@ -12764,11 +12764,67 @@ Below is a solution without reducing 1 to all elements.
 
 ~~\\
 
-~~ This solution description is copied from the hottest topic in Discuss forum for this problem. Actually, there is an easier trick which can solve the problem. There are blue, green and red dots inside graph, an interesting fact is, if they want to form a perfect rectangle, they should follow 2 rules: 1. the total area should be exactly the same as $(max_y - min_y)*(max_x - min_x)$; 2. \textbf{There are four and only four corner points which appears once}(namely the blue points). 
+~~ This solution description is copied from the hottest topic in Discuss forum for this problem. Actually, there is an easier trick which can solve the problem. There are blue, green and red dots inside graph, an interesting fact is, if they want to form a perfect rectangle, they should follow 2 rules: 1. the total area should be exactly the same as $(max_y - min_y)*(max_x - min_x)$; 2. \textbf{There are four and only four corner points which appears once}(namely the blue points).
 
 ~~ So we just add every corner points of each rectangle into a set, if it exists, remove it(to remove those points in pairs). Finally, we check 1. the total area; 2. whether the size points remaining is exactly four and are the min and max points.
 
 \javacode{Pro391_2}{Solution - tricks}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 392 Is Subsequence
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 392 Is Subsequence}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a string s and a string t, check if s is subsequence of t.
+
+    You may assume that there is only lower case English letters in both s and t.
+     t is potentially a very long (length ~= 500,000) string,
+      and s is a short string (<=100).
+    A subsequence of a string is a new string which is formed from the original string
+     by deleting some (can be none) of the characters
+      without disturbing the relative positions of the remaining characters.
+       (ie, "ace" is a subsequence of "abcde" while "aec" is not).
+
+    Example 1:
+    s = "abc", t = "ahbgdc"
+    Return true.
+    Example 2:
+    s = "axc", t = "ahbgdc"
+    Return false.
+
+    https://leetcode.com/problems/is-subsequence/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ This problem seems a cheater. First of all, ``Medium'' seems not the proper difficulty of this problem, just check the code to realize what I mean.
+
+~~ Train of thought is quite simple, just maintain 2 pointers, when same, move the forward together, otherwise only pointer in target(longer) string moves forward. 
+
+\javacode{Pro392_1}{Solution - Two Pointers}
+
+~~ However, this solution is not good enough(though already $O(n)$ complexity). The runtime is 62ms, because of charAt!
+
+~~ Then the solution may look like this,
+
+\javacode{Pro392_2}{Solution - Faster maybe Two Pointers}
+
+~~ Now the runtime is 3ms using indexOf, though this is also in $O(n)$ time complexity.
+
+~~ Moreover, what makes this problem more like a cheater is that the tags of it includes `Binary Search', `Dynamic Programming'! Do we... really need this? So I had a go,
+
+\javacode{Pro392_3}{Solution - Dynamic Programming}
+
+~~~Finally... With $O(n^2)$ complexity... Memory Limit Exceed...
 
 \end{homeworkProblem}
 \newpage
