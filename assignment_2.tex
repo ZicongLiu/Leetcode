@@ -300,7 +300,7 @@ Basic Binary Search algorithm
 %----------------------------------------------------------------------------------------
 
 \begin{homeworkProblem}
-\title{\textbf{\large Problem 121 Best Time to Bey and Sell Stock}}
+\title{\textbf{\large Problem 121 Best Time to Buy and Sell Stock}}
 
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
@@ -12808,7 +12808,7 @@ Below is a solution without reducing 1 to all elements.
 
 ~~ This problem seems a cheater. First of all, ``Medium'' seems not the proper difficulty of this problem, just check the code to realize what I mean.
 
-~~ Train of thought is quite simple, just maintain 2 pointers, when same, move the forward together, otherwise only pointer in target(longer) string moves forward. 
+~~ Train of thought is quite simple, just maintain 2 pointers, when same, move the forward together, otherwise only pointer in target(longer) string moves forward.
 
 \javacode{Pro392_1}{Solution - Two Pointers}
 
@@ -12825,6 +12825,95 @@ Below is a solution without reducing 1 to all elements.
 \javacode{Pro392_3}{Solution - Dynamic Programming}
 
 ~~~Finally... With $O(n^2)$ complexity... Memory Limit Exceed...
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 394 Decode String
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 394 Decode String}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    The encoding rule is: k[encoded_string],
+     where the encoded_string inside the square brackets
+      is being repeated exactly k times.
+       Note that k is guaranteed to be a positive integer.
+    
+    You may assume that the input string is always valid;
+     No extra white spaces, square brackets are well-formed, etc.
+    
+    Furthermore, you may assume that the original data does not contain any digits
+     and that digits are only for those repeat numbers, k.
+      For example, there won't be input like 3a or 2[4].
+    
+    Examples:
+        s = "3[a]2[bc]", return "aaabcbc".
+        s = "3[a2[c]]", return "accaccacc".
+        s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+
+    https://leetcode.com/problems/decode-string/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Using stacks to solve the problem. Firstly I use 2 stacks, containing the duplicate number and repeating pattern. However, when considering test case ``sd2[f2[e]g]i'', the solution cannot pass that. Consequently I added another stack to preserve the level of pattern.
+
+~~(Maybe my solution is a bit complicated...)
+
+\javacode{Pro394}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 395 Longest Substring with At Least K Repeating Characters
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 395 Longest Substring with At Least K Repeating Characters}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Find the length of the longest substring T of a given string
+     (consists of lowercase letters only)
+      such that every character in T appears no less than k times.
+      
+    Example 1:
+    
+        Input:
+        s = "aaabb", k = 3
+
+        Output:
+        3
+
+        The longest substring is "aaa", as 'a' is repeated 3 times.
+
+    Example 2:
+        Input:
+        s = "ababbc", k = 2
+
+        Output:
+        5
+
+        The longest substring is "ababb", as 'a' is repeated 2 times
+         and 'b' is repeated 3 times.
+
+    https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A brilliant divide-and-conquer problem using recursion. Count the occurrence of each character, and the substring must exists at sides of the character which appears less than k. And that is exactly the core train of thought.
+
+\javacode{Pro395}{Solution}
 
 \end{homeworkProblem}
 \newpage
