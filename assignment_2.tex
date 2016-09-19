@@ -12936,15 +12936,15 @@ Below is a solution without reducing 1 to all elements.
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
     Given an array of integers A and let n to be its length.
-    
+
     Assume Bk to be an array obtained by rotating the array A k positions clock-wise,
      we define a "rotation function" F on A as follow:
     F(k) = 0 * Bk[0] + 1 * Bk[1] + ... + (n-1) * Bk[n-1].
     Calculate the maximum value of F(0), F(1), ..., F(n-1).
-    
+
     Note:
     n is guaranteed to be less than 105.
-    
+
     Example:
     A = [4, 3, 2, 6]
 
@@ -12961,7 +12961,7 @@ Below is a solution without reducing 1 to all elements.
 
 \textbf{Solution}
 
-~~ The thought is interesting but simple. It's like calculating the sum of a geometric progression(the number series with the same quotient dividing adjacent elements). Just add the total sum, and reduce one specific element multiplies the length of array. 
+~~ The thought is interesting but simple. It's like calculating the sum of a geometric progression(the number series with the same quotient dividing adjacent elements). Just add the total sum, and reduce one specific element multiplies the length of array.
 
 \javacode{Pro396}{Solution}
 
@@ -13069,11 +13069,11 @@ Below is a solution without reducing 1 to all elements.
     Given an array of integers with possible duplicates,
      randomly output the index of a given target number.
       You can assume that the given target number must exist in the array.
-      
+
     Note:
     The array size can be very large.
      Solution that uses too much extra space will not pass the judge.
-    
+
     Example:
         int[] nums = new int[] {1,2,3,3,3};
         Solution solution = new Solution(nums);
@@ -13112,6 +13112,55 @@ Below is a solution without reducing 1 to all elements.
 ~~ The \textbf{binary search} solution, Pre-process sorting for $O(nlg(n))$, Pick in $O(lg(n))$ using binary search, $O(n)$ space to store value/index pairs.
 
 \ccode{Pro398_3}{Solution - Binary Search}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 401 Binary Watch
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 401 Binary Watch}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    A binary watch has 4 LEDs on the top which represent the hours (0-11),
+     and the 6 LEDs on the bottom represent the minutes (0-59).
+    Each LED represents a zero or one, with the least significant bit on the right.
+
+    For example, the above binary watch reads "3:25".
+    Given a non-negative integer n which represents
+     the number of LEDs that are currently on,
+      return all possible times the watch could represent.
+      
+    Example:
+    Input: n = 1
+    Return: ["1:00", "2:00", "4:00", "8:00", "0:01",
+             "0:02", "0:04", "0:08", "0:16", "0:32"]
+
+    Note:
+        The order of output does not matter.
+        The hour must not contain a leading zero,
+         for example "01:00" is not valid, it should be "1:00".
+        The minute must be consist of two digits and may contain a leading zero,
+         for example "10:2" is not valid, it should be "10:02".
+
+    https://leetcode.com/problems/random-pick-index/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A simple backtracking problem. Remind the constraints like the hour(0-11) and the minute(0-59).
+
+\javacode{Pro401_1}{Solution 1}
+
+~~ Another interesting piece of code, quite intuitive.
+
+\javacode{Pro401_2}{Solution 2}
+
 
 \end{homeworkProblem}
 \newpage
