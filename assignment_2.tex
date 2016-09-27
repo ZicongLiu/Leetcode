@@ -13117,6 +13117,75 @@ Below is a solution without reducing 1 to all elements.
 \newpage
 
 %----------------------------------------------------------------------------------------
+%	PROBLEM 400 Nth Digit
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 400 Nth Digit}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Find the nth digit of the infinite integer sequence
+     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...
+
+    Note:
+    n is positive and will fit within the range of
+     a 32-bit signed integer (n < 231).
+
+    Example 1:
+        Input:
+        3
+        Output:
+        3
+
+    Example 2:
+        Input:
+        11
+        Output:
+        0
+
+    Explanation:
+    The 11th digit of the sequence
+     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0,
+      which is part of the number 10.
+
+
+    https://leetcode.com/problems/nth-digit/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ An intuitive problem. Some solution descriptions are quite clear, so I copied them here.
+
+~~ We are tightening the range of our target gradually.
+\begin{enumerate}
+\item Is this number that has nth digit between 100~999, 1000~9999 or some other range?
+\item What is this number?
+\item Within thin number, which digit is the nth digit?
+\end{enumerate}
+
+~~number of the digits at each "level"
+\begin{itemize}
+\item 1-9: 9 digits
+\item 10-99 : 90 * 2 = 180 digits
+\item 100-999 : 900 * 3 = 2700 digits
+\item 1000-9999 : 9000 * 4 = 36000 digits
+\end{itemize}
+
+~~My dumb solution is attached as usual.
+
+\javacode{Pro400_1}{Solution 1}
+
+~~ And a clear solution.
+
+\javacode{Pro400_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
 %	PROBLEM 401 Binary Watch
 %----------------------------------------------------------------------------------------
 
@@ -13134,7 +13203,7 @@ Below is a solution without reducing 1 to all elements.
     Given a non-negative integer n which represents
      the number of LEDs that are currently on,
       return all possible times the watch could represent.
-      
+
     Example:
     Input: n = 1
     Return: ["1:00", "2:00", "4:00", "8:00", "0:01",
@@ -13161,6 +13230,196 @@ Below is a solution without reducing 1 to all elements.
 
 \javacode{Pro401_2}{Solution 2}
 
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 402 Remove K Digits
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 402 Remove K Digits}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a non-negative integer num represented as a string,
+     remove k digits from the number so that the new number is the smallest possible.
+
+    Note:
+
+        The length of num is less than 10002 and will be >= k.
+        The given num does not contain any leading zero.
+
+    Example 1:
+
+        Input: num = "1432219", k = 3
+        Output: "1219"
+        Explanation: Remove the three digits
+         4, 3, and 2 to form the new number 1219 which is the smallest.
+
+    Example 2:
+
+        Input: num = "10200", k = 1
+        Output: "200"
+        Explanation: Remove the leading 1 and the number is 200.
+         Note that the output must not contain leading zeroes.
+
+    Example 3:
+
+        Input: num = "10", k = 2
+        Output: "0"
+        Explanation: Remove all the digits
+         from the number and it is left with nothing which is 0.
+
+
+    https://leetcode.com/problems/remove-k-digits/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ From Discuss @ Leetcode
+
+~~~~ The first algorithm is straight-forward. Let's think about the simplest case: how to remove 1 digit from the number so that the new number is the smallest possible£¿ Well, one can simply scan from left to right, and remove the first "peak" digit; the peak digit is larger than its right neighbor. One can repeat this procedure k times, and obtain the first algorithm.
+
+~~~~ An example to illustrate. When facing 124351, which one shall we remove? Is the biggest 5? Nope, indeed is the first peak element 4(2 < 4 > 3), since 12351 < 12431.
+
+\ccode{Pro402_1}{Solution - O(n*k)}
+
+~~~~ The above algorithm is a bit inefficient because it frequently remove a particular element from a string and has complexity $O(k*n)$.
+
+~~~~One can simulate the above procedure by using a stack, and obtain a $O(n)$ algorithm. Note, when the result stack (i.e. res) pop a digit, it is equivalent as remove that ``peak'' digit.
+
+\javacode{Pro402_2}{Solution - O(n)}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 404 Sum of Left Leaves
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 404 Sum of Left Leaves}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Find the sum of all left leaves in a given binary tree.
+
+    Example:
+
+        3
+       / \
+      9  20
+        /  \
+       15   7
+
+    There are two left leaves in the binary tree,
+     with values 9 and 15 respectively. Return 24.
+
+
+    https://leetcode.com/problems/sum-of-left-leaves/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A simple DFS.
+
+\javacode{Pro404}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 405 Convert a Number to Hexadecimal
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 405 Convert a Number to Hexadecimal}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+     Given an integer, write an algorithm to convert it to hexadecimal.
+      For negative integer, two¡¯s complement method is used.
+
+    Note:
+        All letters in hexadecimal (a-f) must be in lowercase.
+        The hexadecimal string must not contain extra leading 0s.
+         If the number is zero,
+          it is represented by a single zero character '0';
+           otherwise, the first character in the hexadecimal string
+            will not be the zero character.
+        The given number is guaranteed to fit
+         within the range of a 32-bit signed integer.
+        You must not use any method provided by the library
+         which converts/formats the number to hex directly.
+
+    Example 1:
+        Input:
+        26
+        Output:
+        "1a"
+
+    Example 2:
+        Input:
+        -1
+        Output:
+        "ffffffff"
+
+    https://leetcode.com/problems/convert-a-number-to-hexadecimal/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Bit manipulation is enough. No need to worry about negative numbers since in Java they are well-handled by $>>$ operator.
+
+\javacode{Pro405}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 406 Queue Reconstruction by Height
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 406 Queue Reconstruction by Height}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+     Suppose you have a random list of people standing in a queue.
+      Each person is described by a pair of integers (h, k),
+       where h is the height of the person and k is the number of people
+        in front of this person who have a height greater than or equal to h.
+         Write an algorithm to reconstruct the queue.
+
+    Note:
+        The number of people is less than 1,100.
+
+    Example
+        Input:
+        [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]
+        Output:
+        [[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
+
+    https://leetcode.com/problems/queue-reconstruction-by-height/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Since the input is always valid for an output, we can just sort the number pairs first by it's number from large to small and then (if equal) by it's ranking(larger numbers ahead) from small to large.
+
+~~ Use Heap(PriorityQueue) here for convenience.
+
+\javacode{Pro406}{Solution}
 
 \end{homeworkProblem}
 \newpage
