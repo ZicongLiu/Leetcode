@@ -13424,7 +13424,6 @@ Below is a solution without reducing 1 to all elements.
 \end{homeworkProblem}
 \newpage
 
-
 %----------------------------------------------------------------------------------------
 %	PROBLEM 405 Convert a Number to Hexadecimal
 %----------------------------------------------------------------------------------------
@@ -13481,7 +13480,6 @@ Below is a solution without reducing 1 to all elements.
 
 \begin{homeworkProblem}
 \title{\textbf{\large 390 Elimination Game}}
-
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
 
@@ -13574,6 +13572,249 @@ Below is a solution without reducing 1 to all elements.
 \end{enumerate}
 
 \javacode{Pro390_2}{Solution 2}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 407 Trapping Rain Water II
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 407 Trapping Rain Water II}}
+
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+     Given an m x n matrix of positive integers representing the height of
+      each unit cell in a 2D elevation map,
+       compute the volume of water it is able to trap after raining.
+
+    Note:
+    Both m and n are less than 110.
+     The height of each unit cell is greater than 0 and is less than 20,000.
+
+    Example:
+
+    Given the following 3x6 height map:
+    [
+      [1,4,3,1,3,2],
+      [3,2,1,3,2,4],
+      [2,3,3,2,3,1]
+    ]
+
+    Return 4.
+
+    https://leetcode.com/problems/trapping-rain-water-ii/
+
+\end{lstlisting}
+
+\textbf{Solution - Heap}
+
+~~ The first solution is quite interesting and effective. The solution makes use of a PriorityQueue to preserve each points in matrix according to the height, sorted ascending.
+
+~~ Then perform the calculation in a BFS style. Poll the unvisited point with lowest height by now and search its 4(at most) neighbors. If there is any point with lower height, it means the point can be filled with water till it reached current height. Since we are doing it in a ascending order, there won't be any lower points next to the points we just make it wet.
+
+\javacode{Pro407_1}{Solution}
+
+\textbf{Solution - Not reinventing the wheels}
+
+~~ Why do we need to re-invent the wheel?
+
+~~ We can just:
+
+\begin{enumerate}
+\item Do the trapping process in 1D twice, row by row and column by column, then find the minimum height of water according to the position of each point.
+\item Spill the water which is higher than neighbors.
+\end{enumerate}
+
+~~ Actually, I've done the 1st step correctly, but struggling in the 2nd step.
+
+~~ Here is a solution of Spilling from Discuss:
+
+~~For every spot that gets wet, from either row or column calculation, the water can possibly spill.
+
+~~~We need to check the water height aganist it's 4 neighbors.
+
+\begin{itemize}
+\item If the water height is taller than any one of its 4 neightbors, we need to spill the extra water.
+\item If we spill any water from any slot, then its 4 neightbors needs to check themselves again.
+        For example, if we spill some water in the current slot b/c its bottm neighbor's height, current slot's top neighbor's height might need to be updated again.
+\item We keep checking until there is no water to be spilled.
+\end{itemize}
+
+~~See code for details.
+
+\javacode{Pro407_2}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 403 Frog Jump
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+\title{\textbf{\large 403 Frog Jump}}
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+    
+    A frog is crossing a river.
+     The river is divided into x units and at each unit
+      there may or may not exist a stone.
+       The frog can jump on a stone, but it must not jump into the water.
+
+    Given a list of stones' positions (in units) in sorted ascending order,
+     determine if the frog is able to cross the river by landing on the last stone.
+      Initially,
+       the frog is on the first stone and assume the first jump must be 1 unit.
+
+    If the frog's last jump was k units,
+     then its next jump must be either k - 1, k, or k + 1 units.
+      Note that the frog can only jump in the forward direction.
+
+    Note:
+
+        The number of stones is ¡Ý 2 and is < 1,100.
+        Each stone's position will be a non-negative integer < 231.
+        The first stone's position is always 0.
+
+    Example 1:
+        [0,1,3,5,6,8,12,17]
+
+        There are a total of 8 stones.
+        The first stone at the 0th unit, second stone at the 1st unit,
+        third stone at the 3rd unit, and so on...
+        The last stone at the 17th unit.
+
+        Return true. The frog can jump to the last stone by jumping
+        1 unit to the 2nd stone, then 2 units to the 3rd stone, then
+        2 units to the 4th stone, then 3 units to the 6th stone,
+        4 units to the 7th stone, and 5 units to the 8th stone.
+
+    Example 2:
+        [0,1,2,3,4,8,9,11]
+
+        Return false. There is no way to jump to the last stone as
+        the gap between the 5th and 6th stone is too large.
+
+    https://leetcode.com/problems/frog-jump/
+
+\end{lstlisting}
+
+\textbf{Solution - HashMap}
+
+~~ This is somewhat an intuitive solution(not as intuitive as the raw DFS solution, but that one needs optimization to pass the OJ), making use of HashMap and a little DP thoughts.
+
+~~ Just use a Hashmap to maintain how we get to each stone, mapping the offset of stone(rather than the index of stone) to a list of Ks where we can jump from such target stone to other stones.
+
+~~ Use an example to better illustrate.
+
+~~ For [0,1,3,5,6,8,12,17],
+
+~~ What we only know at the very beginning is that we have a mapping of 0 => [1], which is the initialization case.
+
+~~~ Then we can try to jump from stone with offset 0. Since it's mapping to [1], we can jump to 0+(1-1)(invalid), \textbf{0+1=1}, 0+(1+1)=2, since 1 is in one of the existing stones and we are jumping 1 step to stone offset 1, we just add [1,2](when k = 1, k-1 = 0 is invalid) to stone 1.
+
+~~ In case we are not getting the point, we can use 3 as another example of steps. From 3 we can jump 1,2 or 3 steps away, then we can find that when we jump 2 steps, we reach 5, and add(2-1,2,2+1) to stone 5; when jumping 3 steps, we reach stone 6 and results in the adding of (3-1,3,3+1) to stone 6.
+
+~~ Finally we get a map looks like this(no need to calculate the last stone since we only need to know if we can reach the last stone and needn't jump away from it):
+
+~~~~{17=[], 0=[1], 1=[1, 2], 3=[1, 2, 3], 5=[1, 2, 3], 6=[1, 2, 3, 4], 8=[1, 2, 3, 4], 12=[3, 4, 5]}
+
+\javacode{Pro403_1}{Solution - HashMap}
+
+\textbf{Solution - DFS}
+
+~~ Actually, this solution is more intuitive, but pure DFS is not efficient enough to pass the whole test set, we need memoization to optimize it.
+
+~~ The core illustration part of solution and the solution itself are copied from Discuss, except for the translation upon the code from C to Java.
+
+~~ The pure DFS solution is intuitive:
+
+\javacode{Pro403_2_1}{Solution - Pure DFS}
+
+~~ However, this won't pass big data, so we need optimization like:
+
+\javacode{Pro403_2_2}{Solution - DFS with memoization}
+
+~~ The key is to combine the pos and k into one unique integer as the key to map. `int key = pos $|$ k $ <<$ 11;'
+
+~~ Some explanation on why this is valid:
+
+~~~The number of stones is less than 1100 so pos will always be less than $2^11$ (2048).
+
+~~~Stone positions could be theoretically up to $2^31$ but k is practically not possible to be that big for the parameter as the steps must start from 0 and 1 and at the 1100th step the greatest valid k would be 1100. So combining pos and k is safe here.
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 399 Evaluate Division
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+
+\title{\textbf{\large 399 Evaluate Division}}
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+      Equations are given in the format A / B = k,
+       where A and B are variables represented as strings,
+        and k is a real number (floating point number).
+         Given some queries, return the answers.
+          If the answer does not exist, return -1.0.
+
+    Example:
+    Given a / b = 2.0, b / c = 3.0.
+    queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? .
+    return [6.0, 0.5, -1.0, 1.0, -1.0 ].
+
+    The input is:
+     vector<pair<string, string>> equations,
+      vector<double>& values,
+       vector<pair<string, string>> queries ,
+        where equations.size() == values.size(),
+         and the values are positive.
+          This represents the equations. Return vector<double>.
+
+    According to the example above:
+
+    equations = [ ["a", "b"], ["b", "c"] ],
+    values = [2.0, 3.0],
+    queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ].
+
+    The input is always valid.
+     You may assume that evaluating the queries will result in
+      no division by zero and there is no contradiction.
+
+    https://leetcode.com/problems/evaluate-division/
+
+\end{lstlisting}
+
+\textbf{Solution - DFS}
+
+~~ A graph problem, DFS is enough, actually.
+
+\javacode{Pro399_1}{Solution 1}
+
+\textbf{Solution - Floyd-Warshall}
+
+~~ However, we need to be greedy to more efficient solutions. DFS has lots of duplicate calculations.
+
+~~ For description of Floyd-Warsall, refer to
+
+\url{https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm}
+
+~~For this problem,computing quotients instead of shortest paths. An equation $A/B=k$ is like a graph edge $A->B$, and $(A/B)*(B/C)*(C/D)$ is like the path $A->B->C->D$.
+
+\ccode{Pro399_2}{Solution 2}
+
+\textbf{Solution - Union-Find}
+
+~~ Another solution is fast. Even though, I haven't quite understand the point.
+
+\javacode{Pro399_3}{Solution 3}
 
 \end{homeworkProblem}
 \newpage
