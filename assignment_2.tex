@@ -13658,7 +13658,7 @@ Below is a solution without reducing 1 to all elements.
 \title{\textbf{\large 403 Frog Jump}}
 
 \begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
-    
+
     A frog is crossing a river.
      The river is divided into x units and at each unit
       there may or may not exist a stone.
@@ -13815,6 +13815,152 @@ Below is a solution without reducing 1 to all elements.
 ~~ Another solution is fast. Even though, I haven't quite understand the point.
 
 \javacode{Pro399_3}{Solution 3}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 409 Longest Palindrome
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+
+\title{\textbf{\large 409 Longest Palindrome}}
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+      Given a string which consists of lowercase or uppercase letters,
+       find the length of the longest palindromes
+        that can be built with those letters.
+    This is case sensitive,
+     for example "Aa" is not considered a palindrome here.
+    Note:
+    Assume the length of given string will not exceed 1,010.
+
+    Example:
+        Input:
+            "abccccdd"
+
+        Output:
+            7
+        Explanation:
+            One longest palindrome that can be built is "dccaccd",
+             whose length is 7.
+
+    https://leetcode.com/problems/longest-palindrome/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ A simple problem, it's hard (but possible) to forget the case where we can add one more element into the middle of the palindrome sequence.
+
+\javacode{Pro409}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 415 Add Strings 
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+
+\title{\textbf{\large 415 Add Strings}}
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+      Given two non-negative numbers num1 and num2 represented as string,
+       return the sum of num1 and num2.
+
+    Note:
+        The length of both num1 and num2 is < 5100.
+        Both num1 and num2 contains only digits 0-9.
+        Both num1 and num2 does not contain any leading zero.
+        You must not use any built-in BigInteger library
+         or convert the inputs to integer directly.
+
+
+    https://leetcode.com/problems/add-strings/
+
+\end{lstlisting}
+
+\textbf{Solution}
+
+~~ Just a high-precision addition...
+
+\javacode{Pro415}{Solution}
+
+\end{homeworkProblem}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 416 Partition Equal Subset Sum
+%----------------------------------------------------------------------------------------
+
+\begin{homeworkProblem}
+
+\title{\textbf{\large 416 Partition Equal Subset Sum}}
+
+\begin{lstlisting}[language=tex,stepnumber=100,frame=shadowbox]
+
+    Given a non-empty array containing only positive integers,
+     find if the array can be partitioned into two subsets
+      such that the sum of elements in both subsets is equal.
+
+    Note:
+
+        Each of the array element will not exceed 100.
+        The array size will not exceed 200.
+
+    Example 1:
+
+        Input:
+             [1, 5, 11, 5]
+
+        Output:
+             true
+
+        Explanation:
+             The array can be partitioned as [1, 5, 5] and [11].
+
+    Example 2:
+
+        Input:
+             [1, 2, 3, 5]
+
+        Output:
+             false
+
+        Explanation:
+             The array cannot be partitioned into equal sum subsets.
+
+
+
+    https://leetcode.com/problems/partition-equal-subset-sum/
+
+\end{lstlisting}
+
+\textbf{Solution - DFS(TLE)}
+
+~~ The most intuitive solution is DFS solution, which definitely leads to TLE.
+
+\javacode{Pro416_1}{Solution - DFS}
+
+\textbf{Solution - DP}
+
+~~ The second shot makes use of DP. Just like backpacking problems.
+
+\javacode{Pro416_2}{Solution - DP}
+
+\textbf{Solution - BitSet}
+
+~~ Actually, this one is in nature the same as DP solution, whcih utilize the features of Bitset properly and intelligently.
+
+~~ Unfortunately, there is no(or at least I don't know) way to perform bit manipulation among BitSet in Java, so just paste some C code here.
+
+\ccode{Pro416_3}{Solution - BitSet}
 
 \end{homeworkProblem}
 \newpage
